@@ -139,6 +139,8 @@ public class MainActivity extends AppCompatActivity {
                     customerName = resource.data.customer.name;
                     Log.d(TAG,"[check value customer name] => " + customerName + "[check value receipt number] => " + receiptNumber);
 
+
+
 //                Integer total = resource.total;
 //                Integer totalPages = resource.totalPages;
 //                List<ReceiptModel.> datumList = resource.data;
@@ -439,8 +441,7 @@ public class MainActivity extends AppCompatActivity {
                 "[L]\n" +
                 "[C]<u><font size='big'>Your Receipt</font></u>\n" +
                 "[L]\n" +
-                    "[C]<h1>Hello,</h1>\n" +
-                    "[L]\n" +
+                "[C]<u type='string'>" + receiptNumber + "</u>\n" +
                 "[C]<u type='double'>" + format.format(new Date()) + "</u>\n" +
                 "[C]\n" +
                 "[C]================================\n" +
@@ -465,7 +466,7 @@ public class MainActivity extends AppCompatActivity {
                 "\n" +
                 "[C]<barcode type='ean13' height='10'>831254784551</barcode>\n" +
                 "[L]\n" +
-                "[C]<qrcode size='20'>https://dantsu.com/</qrcode>\n"
+                "[C]<qrcode size='20'>https://klariselaundry.com/api/ereceipt/126</qrcode>\n"
         );
     }
 
