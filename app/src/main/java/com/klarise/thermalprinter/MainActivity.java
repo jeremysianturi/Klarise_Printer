@@ -73,7 +73,11 @@ public class MainActivity extends AppCompatActivity {
 
     private APIInterface apiInterface;
 
+    private String receiptNumberonUrl;
     private String receiptNumber;
+
+    private int orderListSize;
+    private String customerName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,16 +113,16 @@ public class MainActivity extends AppCompatActivity {
 
             // after that we are extracting string
             // from that parameters.
-            receiptNumber = parameters.get(parameters.size() - 1);
+            receiptNumberonUrl = parameters.get(parameters.size() - 1);
 
             // on below line we are setting that string
             // to our text view which we got as params.
-            selectedPdfTextView.setText(receiptNumber);
+            selectedPdfTextView.setText(receiptNumberonUrl);
 
             /**
              GET Receipt Resources
              **/
-            Call<ReceiptModel> call = apiInterface.getList(receiptNumber);
+            Call<ReceiptModel> call = apiInterface.getList(receiptNumberonUrl);
             call.enqueue(new Callback<ReceiptModel>() {
                 @Override
                 public void onResponse(Call<ReceiptModel> call, Response<ReceiptModel> response) {
@@ -129,7 +133,12 @@ public class MainActivity extends AppCompatActivity {
                     ReceiptModel resource = response.body();
                     String text = resource.data.agenName;
                     List<OrderLine> orderList = response.body().data.orderLine;
-                    int orderListSize = response.body().data.orderLine.size();
+                    int orderListSize = resource.data.orderLine.size();
+                    String test = orderList.get(0).orderedQty;
+                    receiptNumber = resource.data.name;
+                    customerName = resource.data.customer.name;
+                    Log.d(TAG,"[check value customer name] => " + customerName + "[check value receipt number] => " + receiptNumber);
+
 //                Integer total = resource.total;
 //                Integer totalPages = resource.totalPages;
 //                List<ReceiptModel.> datumList = resource.data;
@@ -428,8 +437,10 @@ public class MainActivity extends AppCompatActivity {
         return printer.addTextToPrint(
             "[C]<img>" + PrinterTextParserImg.bitmapToHexadecimalString(printer, this.getApplicationContext().getResources().getDrawableForDensity(R.drawable.logo, DisplayMetrics.DENSITY_MEDIUM)) + "</img>\n" +
                 "[L]\n" +
-                "[C]<u><font size='big'>ORDER N°045</font></u>\n" +
+                "[C]<u><font size='big'>Your Receipt</font></u>\n" +
                 "[L]\n" +
+                    "[C]<h1>Hello,</h1>\n" +
+                    "[L]\n" +
                 "[C]<u type='double'>" + format.format(new Date()) + "</u>\n" +
                 "[C]\n" +
                 "[C]================================\n" +
