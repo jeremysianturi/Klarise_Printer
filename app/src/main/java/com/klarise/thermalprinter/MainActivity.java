@@ -79,6 +79,19 @@ public class MainActivity extends AppCompatActivity {
     private int orderListSize;
     private String customerName;
 
+    private String cashier;
+
+    private String customerAddress;
+
+    private String agentAddress;
+
+    private String receiveDate;
+
+    private String agentName;
+    private String deliveryDate;
+    private String customerPhone;
+    private String total;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -135,9 +148,22 @@ public class MainActivity extends AppCompatActivity {
                     List<OrderLine> orderList = response.body().data.orderLine;
                     int orderListSize = resource.data.orderLine.size();
                     String test = orderList.get(0).orderedQty;
+                    String test2 = orderList.get(0).name;
+                    agentName = resource.data.agenName;
                     receiptNumber = resource.data.name;
                     customerName = resource.data.customer.name;
-                    Log.d(TAG,"[check value customer name] => " + customerName + "[check value receipt number] => " + receiptNumber);
+                    cashier = resource.data.cashier;
+                    customerAddress = resource.data.customer.address;
+                    agentAddress = resource.data.agentAddress;
+                    receiveDate = resource.data.receiveDate;
+                    deliveryDate = resource.data.deliveryDate;
+                    customerPhone = resource.data.customer.phone;
+                    total = resource.data.amountTotal;
+                    Log.d(TAG,"[check value customer name] => " + customerName + "[check value receipt number] => " + receiptNumber +
+                            "[check value cashier] => " + cashier + "[check value customer address] => " + customerAddress + "[check value agent address] => " + agentAddress +
+                            "[check value agent name] => " + agentName + "[check value receive date] => " + receiveDate +
+                            "[check value delivery date] => " + deliveryDate + "[check value customer phone] => " + customerPhone +
+                            "[check value amount total] => " + total);
 
 
 
@@ -437,13 +463,21 @@ public class MainActivity extends AppCompatActivity {
         SimpleDateFormat format = new SimpleDateFormat("'on' yyyy-MM-dd 'at' HH:mm:ss");
         AsyncEscPosPrinter printer = new AsyncEscPosPrinter(printerConnection, 203, 48f, 32);
         return printer.addTextToPrint(
-            "[C]<img>" + PrinterTextParserImg.bitmapToHexadecimalString(printer, this.getApplicationContext().getResources().getDrawableForDensity(R.drawable.logo, DisplayMetrics.DENSITY_MEDIUM)) + "</img>\n" +
+            "[C]<img>" + PrinterTextParserImg.bitmapToHexadecimalString(printer, this.getApplicationContext().getResources().getDrawableForDensity(R.drawable.logo2, DisplayMetrics.DENSITY_MEDIUM)) + "</img>\n" +
                 "[L]\n" +
                 "[C]<u><font size='big'>Your Receipt</font></u>\n" +
                 "[L]\n" +
                 "[C]<u type='string'>" + receiptNumber + "</u>\n" +
+                "[C]<u type='string'>" + agentAddress + "</u>\n" +
                 "[C]<u type='double'>" + format.format(new Date()) + "</u>\n" +
-                "[C]\n" +
+                "[C]================================\n" +
+                "[L]<b>Agen \t\t : </b>" + "[C]<u type='string'>" + agentName + "</u>\n" +
+                "[L]<b>Kasir \t\t : </b>" + "[C]<u type='string'>" + cashier + "</u>\n" +
+                "[L]<b>Tanggal Terima \t\t : </b>" + "[C]<u type='string'>" + receiveDate + "</u>\n" +
+                "[C]<b>Tanggal Selesai \t\t : </b>" + "[C]<u type='string'>" + deliveryDate + "</u>\n" +
+                "[C]<b>Detail Kustomer \t\t : </b>" + "[C]<u type='string'>" + customerName + "</u>\n" +
+                "[L]    Alamat      :   " + "[C]<u type='string'>" + customerAddress + "</u>\n" +
+                "[L]    No. Telp    :   " + "[C]<u type='string'>" + customerPhone + "</u>\n" +
                 "[C]================================\n" +
                 "[L]\n" +
                 "[L]<b>BEAUTIFUL SHIRT</b>[R]9.99€\n" +
@@ -453,8 +487,9 @@ public class MainActivity extends AppCompatActivity {
                 "[L]  + Size : 57/58\n" +
                 "[L]\n" +
                 "[C]--------------------------------\n" +
-                "[R]TOTAL PRICE :[R]34.98€\n" +
-                "[R]TAX :[R]4.23€\n" +
+                "[L]<b>TOTAL \t\t : </b>" + "[C]<u type='string'>" + total + "</u>\n" +
+                 //"[R]TOTAL PRICE :[R]34.98€\n" +
+                //"[R]TAX :[R]4.23€\n" +
                 "[L]\n" +
                 "[C]================================\n" +
                 "[L]\n" +
