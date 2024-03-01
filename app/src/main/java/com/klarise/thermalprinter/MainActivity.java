@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
     private String deliveryDate;
     private String customerPhone;
     private String total;
+    private String paymentMethod;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,8 +148,14 @@ public class MainActivity extends AppCompatActivity {
                     String text = resource.data.agenName;
                     List<OrderLine> orderList = response.body().data.orderLine;
                     int orderListSize = resource.data.orderLine.size();
-                    String test = orderList.get(0).orderedQty;
-                    String test2 = orderList.get(0).name;
+                    String ordername = orderList.get(0).name;
+                    String price = orderList.get(0).priceUnit;
+                    String qty = orderList.get(0).orderedQty;
+                    String uom = orderList.get(0).orderedUom;
+                    for (int i = 0; i < orderListSize; i++) {
+                        Log.d("TAG", "[value order list] => " + orderList.get(i).name  + orderList.get(i).priceUnit
+                                + orderList.get(i).orderedQty + orderList.get(i).orderedUom);
+                    }
                     agentName = resource.data.agenName;
                     receiptNumber = resource.data.name;
                     customerName = resource.data.customer.name;
@@ -159,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
                     deliveryDate = resource.data.deliveryDate;
                     customerPhone = resource.data.customer.phone;
                     total = resource.data.amountTotal;
+                    //paymentMethod = resource.data.payment.get(0);
                     Log.d(TAG,"[check value customer name] => " + customerName + "[check value receipt number] => " + receiptNumber +
                             "[check value cashier] => " + cashier + "[check value customer address] => " + customerAddress + "[check value agent address] => " + agentAddress +
                             "[check value agent name] => " + agentName + "[check value receive date] => " + receiveDate +
@@ -465,43 +473,55 @@ public class MainActivity extends AppCompatActivity {
         return printer.addTextToPrint(
             "[C]<img>" + PrinterTextParserImg.bitmapToHexadecimalString(printer, this.getApplicationContext().getResources().getDrawableForDensity(R.drawable.logo2, DisplayMetrics.DENSITY_MEDIUM)) + "</img>\n" +
                 "[L]\n" +
-                "[C]<u><font size='big'>Your Receipt</font></u>\n" +
+                "[C]<b>Your Receipt</b>\n" +
                 "[L]\n" +
-                "[C]<u type='string'>" + receiptNumber + "</u>\n" +
+                "[C]<u><font size='16'>" + receiptNumber + "</font></u>\n" +
+                "[L]\n" +
                 "[C]<u type='string'>" + agentAddress + "</u>\n" +
-                "[C]<u type='double'>" + format.format(new Date()) + "</u>\n" +
+                //"[C]<u type='double'>" + format.format(new Date()) + "</u>\n" +
                 "[C]================================\n" +
-                "[L]<b>Agen \t\t : </b>" + "[C]<u type='string'>" + agentName + "</u>\n" +
-                "[L]<b>Kasir \t\t : </b>" + "[C]<u type='string'>" + cashier + "</u>\n" +
-                "[L]<b>Tanggal Terima \t\t : </b>" + "[C]<u type='string'>" + receiveDate + "</u>\n" +
-                "[C]<b>Tanggal Selesai \t\t : </b>" + "[C]<u type='string'>" + deliveryDate + "</u>\n" +
-                "[C]<b>Detail Kustomer \t\t : </b>" + "[C]<u type='string'>" + customerName + "</u>\n" +
-                "[L]    Alamat      :   " + "[C]<u type='string'>" + customerAddress + "</u>\n" +
-                "[L]    No. Telp    :   " + "[C]<u type='string'>" + customerPhone + "</u>\n" +
+                "[L]<b>Agen \t\t : </b>" + "[L]<u type='string'>" + agentName + "</u>\n" +
+                "[L]<b>Kasir \t\t : </b>" + "[L]<u type='string'>" + cashier + "</u>\n" +
+                "[L]<b>Tanggal Terima \t\t : </b>" + "[L]<u type='string'>" + receiveDate + "</u>\n" +
+                "[L]<b>Tanggal Selesai \t\t : </b>" + "[L]<u type='string'>" + deliveryDate + "</u>\n" +
+                "[L]<b>Detail Kustomer \t\t : </b>" + "[L]<u type='string'>" + customerName + "</u>\n" +
+                "[L]    Alamat      :   " + "[L]<u type='string'>" + customerAddress + "</u>\n" +
+                "[L]    No. Telp    :   " + "[L]<u type='string'>" + customerPhone + "</u>\n" +
                 "[C]================================\n" +
                 "[L]\n" +
-                "[L]<b>BEAUTIFUL SHIRT</b>[R]9.99€\n" +
+                //"[L]<b> type='string'>" + orderName + "</b>\n" + "[R]<u type='string'>" + price + "</u>\n"
                 "[L]  + Size : S\n" +
                 "[L]\n" +
                 "[L]<b>AWESOME HAT</b>[R]24.99€\n" +
                 "[L]  + Size : 57/58\n" +
                 "[L]\n" +
                 "[C]--------------------------------\n" +
-                "[L]<b>TOTAL \t\t : </b>" + "[C]<u type='string'>" + total + "</u>\n" +
+                "[L]<b>TOTAL \t\t : </b>" + "[L]<u type='string'>" + total + "</u>\n" +
                  //"[R]TOTAL PRICE :[R]34.98€\n" +
                 //"[R]TAX :[R]4.23€\n" +
                 "[L]\n" +
                 "[C]================================\n" +
                 "[L]\n" +
-                "[L]<u><font color='bg-black' size='tall'>Customer :</font></u>\n" +
-                "[L]Raymond DUPONT\n" +
-                "[L]5 rue des girafes\n" +
-                "[L]31547 PERPETES\n" +
-                "[L]Tel : +33801201456\n" +
-                "\n" +
-                "[C]<barcode type='ean13' height='10'>831254784551</barcode>\n" +
+                //"[L]<u><font color='bg-black' size='tall'>Customer :</font></u>\n" +
+                "[L]Syarat dan Ketentuan: \n" +
+                "[L]PERHATIAN: \n" +
+                "[L]1. Batas komplain 1x24j am setelah barang diterima.\n" +
+                    "2. Kerusakan yang disebabkan oleh kelalaian pelanggan karena tidak menginfokan adapakaian yang potensi rusak karena bahan (menciut / robek / brudul) bukan menjadi tanggung jawab Klarise.\n" +
+                    "3. Pencucian 1 wadah 1 mesin.\n" +
+                    "4. Kelunturan yang disebabkan oleh kelalaian pelanggan jika tidak menginfokan ada pakaian potensi luntur bukan menjadi tanggung jawab Klarise.\n" +
+                    "5. Kehilangan pakaian yang disebabkan karena kelalaian Klarise,akan diganti 3x harga pencucian.\n" +
+                    "6. Garansi cuci ulang jika barang tidak bersih atau berbau apek(1x24 jam setelah barang diterima).\n" +
+                    "7. Pembayaran lunas diawal.\n" +
+                    "8. Barang yang hilang bukan menjadi tanggungjawab pihak Klarise jika barang tidak diambil lewat dari 7x24 jam serta tidak ada info ke pihak Klarise.\n" +
+                    "9. Pihak Klarise tidak akan bertanggungjawab atas barang yang tertinggal di dalam pakaian.\n" +
                 "[L]\n" +
-                "[C]<qrcode size='20'>https://klariselaundry.com/api/ereceipt/126</qrcode>\n"
+                "[L]\n" +
+                // "[L]Tel : +33801201456\n" +
+                //"[C]<barcode type='ean13' height='10'>831254784551</barcode>\n" +
+                "[C]<b> Klarise Pusat </b>\n" +
+                "[C]Indonesia \n" +
+                "[C]Feel free to email us if you need our help. \n"
+                //"[C]<qrcode size='20'>https://klariselaundry.com/api/ereceipt/126</qrcode>\n"
         );
     }
 
