@@ -27,6 +27,7 @@ import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
 import android.print.PrintManager;
 import android.provider.OpenableColumns;
+import android.text.Html;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.widget.Button;
@@ -49,9 +50,11 @@ import com.klarise.thermalprinter.async.AsyncUsbEscPosPrint;
 import com.klarise.thermalprinter.model.OrderLine;
 import com.klarise.thermalprinter.model.ReceiptModel;
 
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -83,15 +86,17 @@ public class MainActivity extends AppCompatActivity {
 
     private String customerAddress;
 
+    private String agentName;
     private String agentAddress;
+    private String agentPhone;
 
     private String receiveDate;
-
-    private String agentName;
     private String deliveryDate;
     private String customerPhone;
-    private String total;
+    private Double total;
+    private String totalInRupiah;
     private String paymentMethod;
+    private String paymentAmount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,7 +150,6 @@ public class MainActivity extends AppCompatActivity {
                     String displayResponse = "";
 
                     ReceiptModel resource = response.body();
-                    String text = resource.data.agenName;
                     List<OrderLine> orderList = response.body().data.orderLine;
                     int orderListSize = resource.data.orderLine.size();
                     String ordername = orderList.get(0).name;
@@ -156,24 +160,33 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("TAG", "[value order list] => " + orderList.get(i).name  + orderList.get(i).priceUnit
                                 + orderList.get(i).orderedQty + orderList.get(i).orderedUom);
                     }
-                    agentName = resource.data.agenName;
+                    agentName = resource.data.agent.agentName;
+                    agentAddress = resource.data.agent.agentAddress;
+                    agentPhone = resource.data.agent.agentPhone;
                     receiptNumber = resource.data.name;
                     customerName = resource.data.customer.name;
                     cashier = resource.data.cashier;
                     customerAddress = resource.data.customer.address;
-                    agentAddress = resource.data.agentAddress;
                     receiveDate = resource.data.receiveDate;
                     deliveryDate = resource.data.deliveryDate;
                     customerPhone = resource.data.customer.phone;
-                    total = resource.data.amountTotal;
-                    //paymentMethod = resource.data.payment.get(0);
+                    total = Double.valueOf(resource.data.amountTotal);
+                    paymentMethod = resource.data.payment.get(0).paymentMethod;
+                    paymentAmount = String.valueOf(resource.data.payment.get(0).amount);
+
+
+                    Locale localeID = new Locale("in", "ID");
+                    NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
+                    totalInRupiah = formatRupiah.format((double)total);
+                    totalInRupiah = makeRpProperly(totalInRupiah, ' ',2);
+
+
+
                     Log.d(TAG,"[check value customer name] => " + customerName + "[check value receipt number] => " + receiptNumber +
                             "[check value cashier] => " + cashier + "[check value customer address] => " + customerAddress + "[check value agent address] => " + agentAddress +
                             "[check value agent name] => " + agentName + "[check value receive date] => " + receiveDate +
                             "[check value delivery date] => " + deliveryDate + "[check value customer phone] => " + customerPhone +
-                            "[check value amount total] => " + total);
-
-
+                            "[check value amount total] => " + totalInRupiah);
 
 //                Integer total = resource.total;
 //                Integer totalPages = resource.totalPages;
@@ -186,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
 //                }
 
 //                responseText.setText(displayResponse);
-                    Log.d(TAG,"[response] => " + text + "[orderLine Size] => " + orderListSize
+                    Log.d(TAG,"[response] => " + "[orderLine Size] => " + orderListSize
                             + "[orderList value] => " + orderList);
                 }
 
@@ -199,6 +212,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
+
 
 
         pdfPickerLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
@@ -221,6 +235,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
+    public String makeRpProperly(String str, char ch, int position) {
+        return str.substring(0, position) + ch + str.substring(position);
+    }
+
+
 
     private void openPdfPicker() {
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
@@ -471,59 +492,50 @@ public class MainActivity extends AppCompatActivity {
         SimpleDateFormat format = new SimpleDateFormat("'on' yyyy-MM-dd 'at' HH:mm:ss");
         AsyncEscPosPrinter printer = new AsyncEscPosPrinter(printerConnection, 203, 48f, 32);
         return printer.addTextToPrint(
-            "[C]<img>" + PrinterTextParserImg.bitmapToHexadecimalString(printer, this.getApplicationContext().getResources().getDrawableForDensity(R.drawable.logo2, DisplayMetrics.DENSITY_MEDIUM)) + "</img>\n" +
-                "[L]\n" +
-                "[C]<b>Your Receipt</b>\n" +
-                "[L]\n" +
-                "[C]<u><font size='16'>" + receiptNumber + "</font></u>\n" +
-                "[L]\n" +
-                "[C]<u type='string'>" + agentAddress + "</u>\n" +
-                //"[C]<u type='double'>" + format.format(new Date()) + "</u>\n" +
-                "[C]================================\n" +
-                "[L]<b>Agen \t\t : </b>" + "[L]<u type='string'>" + agentName + "</u>\n" +
-                "[L]<b>Kasir \t\t : </b>" + "[L]<u type='string'>" + cashier + "</u>\n" +
-                "[L]<b>Tanggal Terima \t\t : </b>" + "[L]<u type='string'>" + receiveDate + "</u>\n" +
-                "[L]<b>Tanggal Selesai \t\t : </b>" + "[L]<u type='string'>" + deliveryDate + "</u>\n" +
-                "[L]<b>Detail Kustomer \t\t : </b>" + "[L]<u type='string'>" + customerName + "</u>\n" +
-                "[L]    Alamat      :   " + "[L]<u type='string'>" + customerAddress + "</u>\n" +
-                "[L]    No. Telp    :   " + "[L]<u type='string'>" + customerPhone + "</u>\n" +
-                "[C]================================\n" +
-                "[L]\n" +
-                //"[L]<b> type='string'>" + orderName + "</b>\n" + "[R]<u type='string'>" + price + "</u>\n"
-                "[L]  + Size : S\n" +
-                "[L]\n" +
-                "[L]<b>AWESOME HAT</b>[R]24.99€\n" +
-                "[L]  + Size : 57/58\n" +
-                "[L]\n" +
-                "[C]--------------------------------\n" +
-                "[L]<b>TOTAL \t\t : </b>" + "[L]<u type='string'>" + total + "</u>\n" +
-                 //"[R]TOTAL PRICE :[R]34.98€\n" +
-                //"[R]TAX :[R]4.23€\n" +
-                "[L]\n" +
-                "[C]================================\n" +
-                "[L]\n" +
-                //"[L]<u><font color='bg-black' size='tall'>Customer :</font></u>\n" +
-                "[L]Syarat dan Ketentuan: \n" +
-                "[L]PERHATIAN: \n" +
-                "[L]1. Batas komplain 1x24j am setelah barang diterima.\n" +
-                    "2. Kerusakan yang disebabkan oleh kelalaian pelanggan karena tidak menginfokan adapakaian yang potensi rusak karena bahan (menciut / robek / brudul) bukan menjadi tanggung jawab Klarise.\n" +
-                    "3. Pencucian 1 wadah 1 mesin.\n" +
-                    "4. Kelunturan yang disebabkan oleh kelalaian pelanggan jika tidak menginfokan ada pakaian potensi luntur bukan menjadi tanggung jawab Klarise.\n" +
-                    "5. Kehilangan pakaian yang disebabkan karena kelalaian Klarise,akan diganti 3x harga pencucian.\n" +
-                    "6. Garansi cuci ulang jika barang tidak bersih atau berbau apek(1x24 jam setelah barang diterima).\n" +
-                    "7. Pembayaran lunas diawal.\n" +
-                    "8. Barang yang hilang bukan menjadi tanggungjawab pihak Klarise jika barang tidak diambil lewat dari 7x24 jam serta tidak ada info ke pihak Klarise.\n" +
-                    "9. Pihak Klarise tidak akan bertanggungjawab atas barang yang tertinggal di dalam pakaian.\n" +
-                "[L]\n" +
-                "[L]\n" +
-                // "[L]Tel : +33801201456\n" +
-                //"[C]<barcode type='ean13' height='10'>831254784551</barcode>\n" +
-                "[C]<b> Klarise Pusat </b>\n" +
-                "[C]Indonesia \n" +
-                "[C]Feel free to email us if you need our help. \n"
-                //"[C]<qrcode size='20'>https://klariselaundry.com/api/ereceipt/126</qrcode>\n"
+                "[C]<img>" + PrinterTextParserImg.bitmapToHexadecimalString(printer, this.getApplicationContext().getResources().getDrawableForDensity(R.drawable.logo2, DisplayMetrics.DENSITY_MEDIUM)) + "</img>\n" +
+                        "[L]\n" +
+                        "[C]<b <font size='medium'>Your Receipt</b>\n" +
+                        "[L]\n" +
+                        "[C]<font size='medium'>" + receiptNumber + "</font>\n" +
+                        "[L]\n" +
+                        "[C]<u type='string'>" + agentAddress + "</u>\n" +
+                        "[C]<u type='string'>" + agentPhone + "</u>\n" +
+                        //"[C]<u type='double'>" + format.format(new Date()) + "</u>\n" +
+                        "[C]================================\n" +
+                        "[L]<b>Agen \t\t : </b>" + "[L]<u type='string'>" + agentName + "</u>\n" +
+                        "[L]<b>Kasir \t\t : </b>" + "[L]<u type='string'>" + cashier + "</u>\n" +
+                        "[L]<b>Tanggal Terima \t\t : </b>" + "[L]<u type='string'>" + receiveDate + "</u>\n" +
+                        "[L]<b>Tanggal Selesai \t\t : </b>" + "[L]<u type='string'>" + deliveryDate + "</u>\n" +
+                        "[L]<b>Detail Kustomer \t\t : </b>" + "[L]<u type='string'>" + customerName + "</u>\n" +
+                        "[L]    Alamat      :   " + "[L]<u type='string'>" + customerAddress + "</u>\n" +
+                        "[L]    No. Telp    :   " + "[L]<u type='string'>" + customerPhone + "</u>\n" +
+                        "[C]================================\n" +
+                        "[L]\n" +
+                        //"[L]<b> type='string'>" + orderName + "</b>\n" + "[R]<u type='string'>" + price + "</u>\n"
+                        "[L]  + Size : S\n" +
+                        "[L]\n" +
+                        "[L]<b>AWESOME HAT</b>[R]24.99€\n" +
+                        "[L]  + Size : 57/58\n" +
+                        "[L]\n" +
+                        "[C]--------------------------------\n" +
+                        "[L]<b>TOTAL : </b>" + "[L]<u type='string'>" + totalInRupiah + "</u>\n" +
+                        //"[R]TOTAL PRICE :[R]34.98€\n" +
+                        //"[R]TAX :[R]4.23€\n" +
+                        "[L]\n" +
+                        "[C]================================\n" +
+                        "[L]\n" +
+                        "[L]\n" +
+                        // "[L]Tel : +33801201456\n" +
+                        //"[C]<barcode type='ean13' height='10'>831254784551</barcode>\n" +
+                        "[C]<b> Klarise Pusat </b>\n" +
+                        "[C]Indonesia \n"
+//                        "[C]Feel free to email us if you need our help. \n"
+        //"[C]<qrcode size='20'>https://klariselaundry.com/api/ereceipt/126</qrcode>\n"
         );
     }
+
+
+    //"[C]<qrcode size='20'>https://klariselaundry.com/api/ereceipt/126</qrcode>\n"
 
     public void pickPrint(){
         PrintManager printManager= null;

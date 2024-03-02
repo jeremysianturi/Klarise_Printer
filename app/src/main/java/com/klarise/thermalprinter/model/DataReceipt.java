@@ -5,11 +5,9 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class DataReceipt {
-    @SerializedName("agent_name")
-    public String agenName;
 
-    @SerializedName("agent_address")
-    public String agentAddress;
+    @SerializedName("agent")
+    public Agent agent;
 
     @SerializedName("name")
     public String name;
