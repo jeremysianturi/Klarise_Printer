@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
     private String receiptNumberonUrl;
     private String receiptNumber;
 
+    private List<OrderLine> orderList;
     private int orderListSize;
     private String customerName;
 
@@ -150,16 +151,8 @@ public class MainActivity extends AppCompatActivity {
                     String displayResponse = "";
 
                     ReceiptModel resource = response.body();
-                    List<OrderLine> orderList = response.body().data.orderLine;
-                    int orderListSize = resource.data.orderLine.size();
-                    String ordername = orderList.get(0).name;
-                    String price = orderList.get(0).priceUnit;
-                    String qty = orderList.get(0).orderedQty;
-                    String uom = orderList.get(0).orderedUom;
-                    for (int i = 0; i < orderListSize; i++) {
-                        Log.d("TAG", "[value order list] => " + orderList.get(i).name  + orderList.get(i).priceUnit
-                                + orderList.get(i).orderedQty + orderList.get(i).orderedUom);
-                    }
+                    orderList = response.body().data.orderLine;
+                    orderListSize = orderList.size();
                     agentName = resource.data.agent.agentName;
                     agentAddress = resource.data.agent.agentAddress;
                     agentPhone = resource.data.agent.agentPhone;
@@ -340,17 +333,17 @@ public class MainActivity extends AppCompatActivity {
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
                 alertDialog.setTitle("Bluetooth printer selection");
                 alertDialog.setItems(
-                    items,
-                    (dialogInterface, i1) -> {
-                        int index = i1 - 1;
-                        if (index == -1) {
-                            selectedDevice = null;
-                        } else {
-                            selectedDevice = bluetoothDevicesList[index];
+                        items,
+                        (dialogInterface, i1) -> {
+                            int index = i1 - 1;
+                            if (index == -1) {
+                                selectedDevice = null;
+                            } else {
+                                selectedDevice = bluetoothDevicesList[index];
+                            }
+                            Button button = (Button) findViewById(R.id.button_bluetooth_browse);
+                            button.setText(items[i1]);
                         }
-                        Button button = (Button) findViewById(R.id.button_bluetooth_browse);
-                        button.setText(items[i1]);
-                    }
                 );
 
                 AlertDialog alert = alertDialog.create();
@@ -364,20 +357,20 @@ public class MainActivity extends AppCompatActivity {
     public void printBluetooth() {
         this.checkBluetoothPermissions(() -> {
             new AsyncBluetoothEscPosPrint(
-                this,
-                new AsyncEscPosPrint.OnPrintFinished() {
-                    @Override
-                    public void onError(AsyncEscPosPrinter asyncEscPosPrinter, int codeException) {
-                        Log.e("Async.OnPrintFinished", "AsyncEscPosPrint.OnPrintFinished : An error occurred !");
-                    }
+                    this,
+                    new AsyncEscPosPrint.OnPrintFinished() {
+                        @Override
+                        public void onError(AsyncEscPosPrinter asyncEscPosPrinter, int codeException) {
+                            Log.e("Async.OnPrintFinished", "AsyncEscPosPrint.OnPrintFinished : An error occurred !");
+                        }
 
-                    @Override
-                    public void onSuccess(AsyncEscPosPrinter asyncEscPosPrinter) {
-                        Log.i("Async.OnPrintFinished", "AsyncEscPosPrint.OnPrintFinished : Print is finished !");
+                        @Override
+                        public void onSuccess(AsyncEscPosPrinter asyncEscPosPrinter) {
+                            Log.i("Async.OnPrintFinished", "AsyncEscPosPrint.OnPrintFinished : Print is finished !");
+                        }
                     }
-                }
             )
-                .execute(this.getAsyncEscPosPrinter(selectedDevice));
+                    .execute(this.getAsyncEscPosPrinter(selectedDevice));
         });
     }
 
@@ -396,20 +389,20 @@ public class MainActivity extends AppCompatActivity {
                     if (intent.getBooleanExtra(UsbManager.EXTRA_PERMISSION_GRANTED, false)) {
                         if (usbManager != null && usbDevice != null) {
                             new AsyncUsbEscPosPrint(
-                                context,
-                                new AsyncEscPosPrint.OnPrintFinished() {
-                                    @Override
-                                    public void onError(AsyncEscPosPrinter asyncEscPosPrinter, int codeException) {
-                                        Log.e("Async.OnPrintFinished", "AsyncEscPosPrint.OnPrintFinished : An error occurred !");
-                                    }
+                                    context,
+                                    new AsyncEscPosPrint.OnPrintFinished() {
+                                        @Override
+                                        public void onError(AsyncEscPosPrinter asyncEscPosPrinter, int codeException) {
+                                            Log.e("Async.OnPrintFinished", "AsyncEscPosPrint.OnPrintFinished : An error occurred !");
+                                        }
 
-                                    @Override
-                                    public void onSuccess(AsyncEscPosPrinter asyncEscPosPrinter) {
-                                        Log.i("Async.OnPrintFinished", "AsyncEscPosPrint.OnPrintFinished : Print is finished !");
+                                        @Override
+                                        public void onSuccess(AsyncEscPosPrinter asyncEscPosPrinter) {
+                                            Log.i("Async.OnPrintFinished", "AsyncEscPosPrint.OnPrintFinished : Print is finished !");
+                                        }
                                     }
-                                }
                             )
-                                .execute(getAsyncEscPosPrinter(new UsbConnection(usbManager, usbDevice)));
+                                    .execute(getAsyncEscPosPrinter(new UsbConnection(usbManager, usbDevice)));
                         }
                     }
                 }
@@ -423,17 +416,17 @@ public class MainActivity extends AppCompatActivity {
 
         if (usbConnection == null || usbManager == null) {
             new AlertDialog.Builder(this)
-                .setTitle("USB Connection")
-                .setMessage("No USB printer found.")
-                .show();
+                    .setTitle("USB Connection")
+                    .setMessage("No USB printer found.")
+                    .show();
             return;
         }
 
         PendingIntent permissionIntent = PendingIntent.getBroadcast(
-            this,
-            0,
-            new Intent(MainActivity.ACTION_USB_PERMISSION),
-            android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S ? PendingIntent.FLAG_MUTABLE : 0
+                this,
+                0,
+                new Intent(MainActivity.ACTION_USB_PERMISSION),
+                android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S ? PendingIntent.FLAG_MUTABLE : 0
         );
         IntentFilter filter = new IntentFilter(MainActivity.ACTION_USB_PERMISSION);
         registerReceiver(this.usbReceiver, filter);
@@ -450,32 +443,32 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             new AsyncTcpEscPosPrint(
-                this,
-                new AsyncEscPosPrint.OnPrintFinished() {
-                    @Override
-                    public void onError(AsyncEscPosPrinter asyncEscPosPrinter, int codeException) {
-                        Log.e("Async.OnPrintFinished", "AsyncEscPosPrint.OnPrintFinished : An error occurred !");
-                    }
+                    this,
+                    new AsyncEscPosPrint.OnPrintFinished() {
+                        @Override
+                        public void onError(AsyncEscPosPrinter asyncEscPosPrinter, int codeException) {
+                            Log.e("Async.OnPrintFinished", "AsyncEscPosPrint.OnPrintFinished : An error occurred !");
+                        }
 
-                    @Override
-                    public void onSuccess(AsyncEscPosPrinter asyncEscPosPrinter) {
-                        Log.i("Async.OnPrintFinished", "AsyncEscPosPrint.OnPrintFinished : Print is finished !");
+                        @Override
+                        public void onSuccess(AsyncEscPosPrinter asyncEscPosPrinter) {
+                            Log.i("Async.OnPrintFinished", "AsyncEscPosPrint.OnPrintFinished : Print is finished !");
+                        }
                     }
-                }
             )
-                .execute(
-                    this.getAsyncEscPosPrinter(
-                        new TcpConnection(
-                            ipAddress.getText().toString(),
-                            Integer.parseInt(portAddress.getText().toString())
-                        )
-                    )
-                );
+                    .execute(
+                            this.getAsyncEscPosPrinter(
+                                    new TcpConnection(
+                                            ipAddress.getText().toString(),
+                                            Integer.parseInt(portAddress.getText().toString())
+                                    )
+                            )
+                    );
         } catch (NumberFormatException e) {
             new AlertDialog.Builder(this)
-                .setTitle("Invalid TCP port address")
-                .setMessage("Port field must be an integer.")
-                .show();
+                    .setTitle("Invalid TCP port address")
+                    .setMessage("Port field must be an integer.")
+                    .show();
             e.printStackTrace();
         }
     }
@@ -484,6 +477,305 @@ public class MainActivity extends AppCompatActivity {
     ===================================ESC/POS PRINTER PART=========================================
     ==============================================================================================*/
 
+    private String decideWhichHtml(){
+        Locale localeID = new Locale("in", "ID");
+        NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
+
+        for (int i = 0; i < orderListSize; i++) {
+
+            Log.d("TAG", "[value order list] => " + orderList.get(i).name  + orderList.get(i).priceUnit
+                    + orderList.get(i).orderedQty + orderList.get(i).orderedUom);
+        }
+
+        if (orderListSize == 1){
+            String orderName = orderList.get(0).name;
+            Double orderPrice = orderList.get(0).priceUnit;
+            Double orderQty = orderList.get(0).orderedQty;
+            double sumPricePerUnit = orderPrice * orderQty;
+            String sumPricePerUnitString;
+            sumPricePerUnitString = formatRupiah.format(sumPricePerUnit);
+            sumPricePerUnitString = makeRpProperly(sumPricePerUnitString, ' ',2);
+            String pricePerUnit;
+            pricePerUnit = formatRupiah.format((double) orderPrice);
+            pricePerUnit = makeRpProperly(pricePerUnit, ' ',2);
+            return "[L]\n" +
+                    "[C]<b <font size='medium'>Your Receipt</b>\n" +
+                    "[L]\n" +
+                    "[C]<font size='medium'>" + receiptNumber + "</font>\n" +
+                    "[L]\n" +
+                    "[C]<u type='string'>" + agentAddress + "</u>\n" +
+                    "[C]<u type='string'>" + agentPhone + "</u>\n" +
+                    //"[C]<u type='double'>" + format.format(new Date()) + "</u>\n" +
+                    "[C]================================\n" +
+                    "[L]<b>Agen \t: </b>" + "[L]<u type='string'>" + agentName + "</u>\n" +
+                    "[L]<b>Kasir \t: </b>" + "[L]<u type='string'>" + cashier + "</u>\n" +
+                    "[L]<b>Tanggal Terima \t: </b>" + "[L]<u type='string'>" + receiveDate + "</u>\n" +
+                    "[L]<b>Tanggal Selesai \t: </b>" + "[L]<u type='string'>" + deliveryDate + "</u>\n" +
+                    "[L]<b>Detail Kustomer \t: </b>" + "[L]<u type='string'>" + customerName + "</u>\n" +
+                    "[L]<b>Alamat \t: </b>" + "[L]<u type='string'>" + customerAddress + "</u>\n" +
+                    "[L]<b>No. Telp \t: </b>" + "[L]<u type='string'>" + customerPhone + "</u>\n" +
+                    "[C]================================\n" +
+                    "[L]\n" +
+                    "[L]<u type='string'>" + orderName + "</u>[L]<u type='string'>" + sumPricePerUnitString + "</u>\n"+
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty + "x" + pricePerUnit + " / Units" + "</b>\n"+
+
+                    "[L]\n" +
+                    "[C]--------------------------------\n" +
+                    "[L]<b>TOTAL : </b>" + "[L]<u type='string'>" + totalInRupiah + "</u>\n" +
+                    "[L]\n" +
+                    "[C]================================\n" +
+                    "[L]\n" +
+                    "[L]\n" +
+
+                    "[C]<b> Klarise Pusat </b>\n" +
+                    "[C]Indonesia \n"+
+                    "[C]<qrcode size='20'>https://web.klariselaundry.com/tnc</qrcode>\n";
+        }
+        else if (orderListSize == 2) {
+            String orderName1 = orderList.get(0).name;
+            Double orderPrice1 = orderList.get(0).priceUnit;
+            Double orderQty1 = orderList.get(0).orderedQty;
+            double sumPricePerUnit1 = orderPrice1 * orderQty1;
+            String sumPricePerUnitString1;
+            sumPricePerUnitString1 = formatRupiah.format(sumPricePerUnit1);
+            sumPricePerUnitString1 = makeRpProperly(sumPricePerUnitString1, ' ',2);
+            String pricePerUnit1;
+            pricePerUnit1 = formatRupiah.format((double) orderPrice1);
+            pricePerUnit1 = makeRpProperly(pricePerUnit1, ' ',2);
+
+            String orderName2 = orderList.get(1).name;
+            Double orderPrice2 = orderList.get(1).priceUnit;
+            Double orderQty2 = orderList.get(1).orderedQty;
+            double sumPricePerUnit2 = orderPrice2 * orderQty2;
+            String sumPricePerUnitString2;
+            sumPricePerUnitString2 = formatRupiah.format(sumPricePerUnit2);
+            sumPricePerUnitString2 = makeRpProperly(sumPricePerUnitString2, ' ',2);
+            String pricePerUnit2;
+            pricePerUnit2 = formatRupiah.format((double) orderPrice2);
+            pricePerUnit2 = makeRpProperly(pricePerUnit2, ' ',2);
+            return "[L]\n" +
+                    "[C]<b <font size='medium'>Your Receipt</b>\n" +
+                    "[L]\n" +
+                    "[C]<font size='medium'>" + receiptNumber + "</font>\n" +
+                    "[L]\n" +
+                    "[C]<u type='string'>" + agentAddress + "</u>\n" +
+                    "[C]<u type='string'>" + agentPhone + "</u>\n" +
+                    //"[C]<u type='double'>" + format.format(new Date()) + "</u>\n" +
+                    "[C]================================\n" +
+                    "[L]<b>Agen \t: </b>" + "[L]<u type='string'>" + agentName + "</u>\n" +
+                    "[L]<b>Kasir \t: </b>" + "[L]<u type='string'>" + cashier + "</u>\n" +
+                    "[L]<b>Tanggal Terima \t: </b>" + "[L]<u type='string'>" + receiveDate + "</u>\n" +
+                    "[L]<b>Tanggal Selesai \t: </b>" + "[L]<u type='string'>" + deliveryDate + "</u>\n" +
+                    "[L]<b>Detail Kustomer \t: </b>" + "[L]<u type='string'>" + customerName + "</u>\n" +
+                    "[L]<b>Alamat \t: </b>" + "[L]<u type='string'>" + customerAddress + "</u>\n" +
+                    "[L]<b>No. Telp \t: </b>" + "[L]<u type='string'>" + customerPhone + "</u>\n" +
+                    "[C]================================\n" +
+                    "[L]\n" +
+                    // THIS IS THE LOOPING
+                    "[L]<u type='string'>" + orderName1 + "</u>[L]<u type='string'>" + sumPricePerUnitString1 + "</u>\n"+
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty1 + "x" + pricePerUnit1 + " / Units" + "</b>\n"+
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName2 + "</u>[L]<u type='string'>" + sumPricePerUnitString2 + "</u>\n"+
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty2 + "x" + pricePerUnit2 + " / Units" + "</b>\n"+
+                    // THIS IS THE LOOPING
+                    "[L]\n" +
+                    "[C]--------------------------------\n" +
+                    "[L]<b>TOTAL : </b>" + "[L]<u type='string'>" + totalInRupiah + "</u>\n" +
+                    "[L]\n" +
+                    "[C]================================\n" +
+                    "[L]\n" +
+                    "[L]\n" +
+
+                    "[C]<b> Klarise Pusat </b>\n" +
+                    "[C]Indonesia \n"+
+                    "[C]<qrcode size='20'>https://web.klariselaundry.com/tnc</qrcode>\n";
+        }
+        else if (orderListSize == 3) {
+            String orderName1 = orderList.get(0).name;
+            Double orderPrice1 = orderList.get(0).priceUnit;
+            Double orderQty1 = orderList.get(0).orderedQty;
+            double sumPricePerUnit1 = orderPrice1 * orderQty1;
+            String sumPricePerUnitString1;
+            sumPricePerUnitString1 = formatRupiah.format(sumPricePerUnit1);
+            sumPricePerUnitString1 = makeRpProperly(sumPricePerUnitString1, ' ',2);
+            String pricePerUnit1;
+            pricePerUnit1 = formatRupiah.format((double) orderPrice1);
+            pricePerUnit1 = makeRpProperly(pricePerUnit1, ' ',2);
+
+            String orderName2 = orderList.get(1).name;
+            Double orderPrice2 = orderList.get(1).priceUnit;
+            Double orderQty2 = orderList.get(1).orderedQty;
+            double sumPricePerUnit2 = orderPrice2 * orderQty2;
+            String sumPricePerUnitString2;
+            sumPricePerUnitString2 = formatRupiah.format(sumPricePerUnit2);
+            sumPricePerUnitString2 = makeRpProperly(sumPricePerUnitString2, ' ',2);
+            String pricePerUnit2;
+            pricePerUnit2 = formatRupiah.format((double) orderPrice2);
+            pricePerUnit2 = makeRpProperly(pricePerUnit2, ' ',2);
+
+            String orderName3 = orderList.get(2).name;
+            Double orderPrice3 = orderList.get(2).priceUnit;
+            Double orderQty3 = orderList.get(2).orderedQty;
+            double sumPricePerUnit3 = orderPrice3 * orderQty3;
+            String sumPricePerUnitString3;
+            sumPricePerUnitString3 = formatRupiah.format(sumPricePerUnit3);
+            sumPricePerUnitString3 = makeRpProperly(sumPricePerUnitString3, ' ',2);
+            String pricePerUnit3;
+            pricePerUnit3 = formatRupiah.format((double) orderPrice3);
+            pricePerUnit3 = makeRpProperly(pricePerUnit3, ' ',2);
+
+            return "[L]\n" +
+                    "[C]<b <font size='medium'>Your Receipt</b>\n" +
+                    "[L]\n" +
+                    "[C]<font size='medium'>" + receiptNumber + "</font>\n" +
+                    "[L]\n" +
+                    "[C]<u type='string'>" + agentAddress + "</u>\n" +
+                    "[C]<u type='string'>" + agentPhone + "</u>\n" +
+                    //"[C]<u type='double'>" + format.format(new Date()) + "</u>\n" +
+                    "[C]================================\n" +
+                    "[L]<b>Agen \t: </b>" + "[L]<u type='string'>" + agentName + "</u>\n" +
+                    "[L]<b>Kasir \t: </b>" + "[L]<u type='string'>" + cashier + "</u>\n" +
+                    "[L]<b>Tanggal Terima \t: </b>" + "[L]<u type='string'>" + receiveDate + "</u>\n" +
+                    "[L]<b>Tanggal Selesai \t: </b>" + "[L]<u type='string'>" + deliveryDate + "</u>\n" +
+                    "[L]<b>Detail Kustomer \t: </b>" + "[L]<u type='string'>" + customerName + "</u>\n" +
+                    "[L]<b>Alamat \t: </b>" + "[L]<u type='string'>" + customerAddress + "</u>\n" +
+                    "[L]<b>No. Telp \t: </b>" + "[L]<u type='string'>" + customerPhone + "</u>\n" +
+                    "[C]================================\n" +
+                    "[L]\n" +
+                    // THIS IS THE LOOPING
+                    "[L]<u type='string'>" + orderName1 + "</u>[L]<u type='string'>" + sumPricePerUnitString1 + "</u>\n"+
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty1 + "x" + pricePerUnit1 + " / Units" + "</b>\n"+
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName2 + "</u>[L]<u type='string'>" + sumPricePerUnitString2 + "</u>\n"+
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty2 + "x" + pricePerUnit2 + " / Units" + "</b>\n"+
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName3 + "</u>[L]<u type='string'>" + sumPricePerUnitString3 + "</u>\n"+
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty3 + "x" + pricePerUnit3 + " / Units" + "</b>\n"+
+                    // THIS IS THE LOOPING
+                    "[L]\n" +
+                    "[C]--------------------------------\n" +
+                    "[L]<b>TOTAL : </b>" + "[L]<u type='string'>" + totalInRupiah + "</u>\n" +
+                    "[L]\n" +
+                    "[C]================================\n" +
+                    "[L]\n" +
+                    "[L]\n" +
+
+                    "[C]<b> Klarise Pusat </b>\n" +
+                    "[C]Indonesia \n"+
+                    "[C]<qrcode size='20'>https://web.klariselaundry.com/tnc</qrcode>\n";
+        }
+        else if (orderListSize == 4) {
+            String orderName1 = orderList.get(0).name;
+            Double orderPrice1 = orderList.get(0).priceUnit;
+            Double orderQty1 = orderList.get(0).orderedQty;
+            double sumPricePerUnit1 = orderPrice1 * orderQty1;
+            String sumPricePerUnitString1;
+            sumPricePerUnitString1 = formatRupiah.format(sumPricePerUnit1);
+            sumPricePerUnitString1 = makeRpProperly(sumPricePerUnitString1, ' ',2);
+            String pricePerUnit1;
+            pricePerUnit1 = formatRupiah.format((double) orderPrice1);
+            pricePerUnit1 = makeRpProperly(pricePerUnit1, ' ',2);
+
+            String orderName2 = orderList.get(1).name;
+            Double orderPrice2 = orderList.get(1).priceUnit;
+            Double orderQty2 = orderList.get(1).orderedQty;
+            double sumPricePerUnit2 = orderPrice2 * orderQty2;
+            String sumPricePerUnitString2;
+            sumPricePerUnitString2 = formatRupiah.format(sumPricePerUnit2);
+            sumPricePerUnitString2 = makeRpProperly(sumPricePerUnitString2, ' ',2);
+            String pricePerUnit2;
+            pricePerUnit2 = formatRupiah.format((double) orderPrice2);
+            pricePerUnit2 = makeRpProperly(pricePerUnit2, ' ',2);
+
+            String orderName3 = orderList.get(2).name;
+            Double orderPrice3 = orderList.get(2).priceUnit;
+            Double orderQty3 = orderList.get(2).orderedQty;
+            double sumPricePerUnit3 = orderPrice3 * orderQty3;
+            String sumPricePerUnitString3;
+            sumPricePerUnitString3 = formatRupiah.format(sumPricePerUnit3);
+            sumPricePerUnitString3 = makeRpProperly(sumPricePerUnitString3, ' ',2);
+            String pricePerUnit3;
+            pricePerUnit3 = formatRupiah.format((double) orderPrice3);
+            pricePerUnit3 = makeRpProperly(pricePerUnit3, ' ',2);
+
+            String orderName4 = orderList.get(3).name;
+            Double orderPrice4 = orderList.get(3).priceUnit;
+            Double orderQty4 = orderList.get(3).orderedQty;
+            double sumPricePerUnit4 = orderPrice4 * orderQty4;
+            String sumPricePerUnitString4;
+            sumPricePerUnitString4 = formatRupiah.format(sumPricePerUnit4);
+            sumPricePerUnitString4 = makeRpProperly(sumPricePerUnitString4, ' ',2);
+            String pricePerUnit4;
+            pricePerUnit4 = formatRupiah.format((double) orderPrice4);
+            pricePerUnit4 = makeRpProperly(pricePerUnit4, ' ',2);
+
+            return "[L]\n" +
+                    "[C]<b <font size='medium'>Your Receipt</b>\n" +
+                    "[L]\n" +
+                    "[C]<font size='medium'>" + receiptNumber + "</font>\n" +
+                    "[L]\n" +
+                    "[C]<u type='string'>" + agentAddress + "</u>\n" +
+                    "[C]<u type='string'>" + agentPhone + "</u>\n" +
+                    //"[C]<u type='double'>" + format.format(new Date()) + "</u>\n" +
+                    "[C]================================\n" +
+                    "[L]<b>Agen \t: </b>" + "[L]<u type='string'>" + agentName + "</u>\n" +
+                    "[L]<b>Kasir \t: </b>" + "[L]<u type='string'>" + cashier + "</u>\n" +
+                    "[L]<b>Tanggal Terima \t: </b>" + "[L]<u type='string'>" + receiveDate + "</u>\n" +
+                    "[L]<b>Tanggal Selesai \t: </b>" + "[L]<u type='string'>" + deliveryDate + "</u>\n" +
+                    "[L]<b>Detail Kustomer \t: </b>" + "[L]<u type='string'>" + customerName + "</u>\n" +
+                    "[L]<b>Alamat \t: </b>" + "[L]<u type='string'>" + customerAddress + "</u>\n" +
+                    "[L]<b>No. Telp \t: </b>" + "[L]<u type='string'>" + customerPhone + "</u>\n" +
+                    "[C]================================\n" +
+                    "[L]\n" +
+                    // THIS IS THE LOOPING
+                    "[L]<u type='string'>" + orderName1 + "</u>[L]<u type='string'>" + sumPricePerUnitString1 + "</u>\n"+
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty1 + "x" + pricePerUnit1 + " / Units" + "</b>\n"+
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName2 + "</u>[L]<u type='string'>" + sumPricePerUnitString2 + "</u>\n"+
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty2 + "x" + pricePerUnit2 + " / Units" + "</b>\n"+
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName3 + "</u>[L]<u type='string'>" + sumPricePerUnitString3 + "</u>\n"+
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty3 + "x" + pricePerUnit3 + " / Units" + "</b>\n"+
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName4 + "</u>[L]<u type='string'>" + sumPricePerUnitString4 + "</u>\n"+
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty4 + "x" + pricePerUnit4 + " / Units" + "</b>\n"+
+                    // THIS IS THE LOOPING
+                    "[L]\n" +
+                    "[C]--------------------------------\n" +
+                    "[L]<b>TOTAL : </b>" + "[L]<u type='string'>" + totalInRupiah + "</u>\n" +
+                    "[L]\n" +
+                    "[C]================================\n" +
+                    "[L]\n" +
+                    "[L]\n" +
+
+                    "[C]<b> Klarise Pusat </b>\n" +
+                    "[C]Indonesia \n"+
+                    "[C]<qrcode size='20'>https://web.klariselaundry.com/tnc</qrcode>\n";
+        }
+        return "null";
+    }
     /**
      * Asynchronous printing
      */
@@ -493,49 +785,9 @@ public class MainActivity extends AppCompatActivity {
         AsyncEscPosPrinter printer = new AsyncEscPosPrinter(printerConnection, 203, 48f, 32);
         return printer.addTextToPrint(
                 "[C]<img>" + PrinterTextParserImg.bitmapToHexadecimalString(printer, this.getApplicationContext().getResources().getDrawableForDensity(R.drawable.logo2, DisplayMetrics.DENSITY_MEDIUM)) + "</img>\n" +
-                        "[L]\n" +
-                        "[C]<b <font size='medium'>Your Receipt</b>\n" +
-                        "[L]\n" +
-                        "[C]<font size='medium'>" + receiptNumber + "</font>\n" +
-                        "[L]\n" +
-                        "[C]<u type='string'>" + agentAddress + "</u>\n" +
-                        "[C]<u type='string'>" + agentPhone + "</u>\n" +
-                        //"[C]<u type='double'>" + format.format(new Date()) + "</u>\n" +
-                        "[C]================================\n" +
-                        "[L]<b>Agen \t\t : </b>" + "[L]<u type='string'>" + agentName + "</u>\n" +
-                        "[L]<b>Kasir \t\t : </b>" + "[L]<u type='string'>" + cashier + "</u>\n" +
-                        "[L]<b>Tanggal Terima \t\t : </b>" + "[L]<u type='string'>" + receiveDate + "</u>\n" +
-                        "[L]<b>Tanggal Selesai \t\t : </b>" + "[L]<u type='string'>" + deliveryDate + "</u>\n" +
-                        "[L]<b>Detail Kustomer \t\t : </b>" + "[L]<u type='string'>" + customerName + "</u>\n" +
-                        "[L]    Alamat      :   " + "[L]<u type='string'>" + customerAddress + "</u>\n" +
-                        "[L]    No. Telp    :   " + "[L]<u type='string'>" + customerPhone + "</u>\n" +
-                        "[C]================================\n" +
-                        "[L]\n" +
-                        //"[L]<b> type='string'>" + orderName + "</b>\n" + "[R]<u type='string'>" + price + "</u>\n"
-                        "[L]  + Size : S\n" +
-                        "[L]\n" +
-                        "[L]<b>AWESOME HAT</b>[R]24.99€\n" +
-                        "[L]  + Size : 57/58\n" +
-                        "[L]\n" +
-                        "[C]--------------------------------\n" +
-                        "[L]<b>TOTAL : </b>" + "[L]<u type='string'>" + totalInRupiah + "</u>\n" +
-                        //"[R]TOTAL PRICE :[R]34.98€\n" +
-                        //"[R]TAX :[R]4.23€\n" +
-                        "[L]\n" +
-                        "[C]================================\n" +
-                        "[L]\n" +
-                        "[L]\n" +
-                        // "[L]Tel : +33801201456\n" +
-                        //"[C]<barcode type='ean13' height='10'>831254784551</barcode>\n" +
-                        "[C]<b> Klarise Pusat </b>\n" +
-                        "[C]Indonesia \n"
-//                        "[C]Feel free to email us if you need our help. \n"
-        //"[C]<qrcode size='20'>https://klariselaundry.com/api/ereceipt/126</qrcode>\n"
+                        decideWhichHtml()
         );
     }
-
-
-    //"[C]<qrcode size='20'>https://klariselaundry.com/api/ereceipt/126</qrcode>\n"
 
     public void pickPrint(){
         PrintManager printManager= null;
@@ -551,9 +803,9 @@ public class MainActivity extends AppCompatActivity {
                 printManager.print("Document", printAdapter,new PrintAttributes.Builder().build());
             }
         }
-    catch (Exception e) {
-        Log.e("Main Activity", "[pickprint error] =>" + e);
-    }
+        catch (Exception e) {
+            Log.e("Main Activity", "[pickprint error] =>" + e);
+        }
     }
 }
 

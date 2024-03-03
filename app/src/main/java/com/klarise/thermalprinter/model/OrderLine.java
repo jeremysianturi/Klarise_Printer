@@ -8,10 +8,10 @@ public class OrderLine {
     public String name;
 
     @SerializedName("price_unit")
-    public String priceUnit;
+    public Double priceUnit;
 
     @SerializedName("ordered_qty")
-    public String orderedQty;
+    public Double orderedQty;
 
     @SerializedName("ordered_uom")
     public String orderedUom;
