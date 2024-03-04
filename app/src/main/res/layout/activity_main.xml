@@ -3,104 +3,169 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:gravity="center"
-    android:orientation="vertical">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:text="Click to print !" />
-
+    android:orientation="vertical"
+    android:background="#BAC2CF"
+    tools:context=".MainActivity">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="20dp"
-        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/button_bluetooth_browse"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:text="Default printer"/>
-
-        <Button
-            android:id="@+id/button_bluetooth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Print by bluetooth !" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/button_usb"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:text="Print by USB !" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
+            android:src="@drawable/klariselogo" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:text="IP :" />
+            android:layout_gravity="center"
+            android:text="Klarise Laundry"
+            android:textColor="#002767"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
-        <EditText
-            android:id="@+id/edittext_tcp_ip"
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:digits="0123456789."
-            android:inputType="number" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_round"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="5dp"
-            android:text="Port :" />
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="130dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="#002767"
+            android:text="Click to print !" />
 
-        <EditText
-            android:id="@+id/edittext_tcp_port"
-            android:layout_width="80dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number" />
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical">
+
+
+            <Button
+                android:id="@+id/button_bluetooth_browse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/roundbutton"
+                android:text="Default printer" />
+
+            <Button
+                android:id="@+id/button_bluetooth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/roundbutton"
+                android:text="Print by bluetooth !" />
+
+            <Button
+                android:id="@+id/button_usb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/roundbutton"
+                android:visibility="gone"
+                android:text="Print by USB !" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:text="IP:"
+                android:textColor="#002767"
+                android:textSize="14dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edittext_tcp_ip"
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:digits="0123456789."
+                android:inputType="number" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:text="Port:"
+                android:textColor="#002767"
+                android:textSize="14dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edittext_tcp_port"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/button_tcp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/roundbutton"
+                android:visibility="gone"
+                android:text="Print by TCP !" />
+
+            <Button
+                android:id="@+id/pick_pdf_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/roundbutton"
+                android:layout_marginBottom="15dp"
+                android:visibility="gone"
+                android:text="Pick PDF" />
+
+            <TextView
+                android:id="@+id/selected_pdf_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginTop="16dp" />
+
+            <Button
+                android:id="@+id/pickprint_pdf_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/roundbutton"
+                android:visibility="gone"
+                android:text="Pick Print PDF" />
+        </LinearLayout>
     </LinearLayout>
-
-    <Button
-        android:id="@+id/button_tcp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:text="Print by TCP !" />
-
-    <Button
-        android:id="@+id/pick_pdf_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pick PDF" />
-
-    <TextView
-        android:id="@+id/selected_pdf_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:layout_marginTop="16dp" />
-
-    <Button
-        android:id="@+id/pickprint_pdf_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="PickPrint PDF" />
 
 
 </LinearLayout>

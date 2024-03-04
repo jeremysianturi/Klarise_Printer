@@ -523,6 +523,7 @@ public class MainActivity extends AppCompatActivity {
                     "[L]\n" +
                     "[C]--------------------------------\n" +
                     "[L]<b>TOTAL : </b>" + "[L]<u type='string'>" + totalInRupiah + "</u>\n" +
+                    "[L]<b>PAYMENT : </b>" + "[L]<u type='string'>" + paymentMethod + "</u>\n" +
                     "[L]\n" +
                     "[C]================================\n" +
                     "[L]\n" +
@@ -586,6 +587,7 @@ public class MainActivity extends AppCompatActivity {
                     "[L]\n" +
                     "[C]--------------------------------\n" +
                     "[L]<b>TOTAL : </b>" + "[L]<u type='string'>" + totalInRupiah + "</u>\n" +
+                    "[L]<b>PAYMENT : </b>" + "[L]<u type='string'>" + paymentMethod + "</u>\n" +
                     "[L]\n" +
                     "[C]================================\n" +
                     "[L]\n" +
@@ -667,6 +669,7 @@ public class MainActivity extends AppCompatActivity {
                     "[L]\n" +
                     "[C]--------------------------------\n" +
                     "[L]<b>TOTAL : </b>" + "[L]<u type='string'>" + totalInRupiah + "</u>\n" +
+                    "[L]<b>PAYMENT : </b>" + "[L]<u type='string'>" + paymentMethod + "</u>\n" +
                     "[L]\n" +
                     "[C]================================\n" +
                     "[L]\n" +
@@ -765,6 +768,7 @@ public class MainActivity extends AppCompatActivity {
                     "[L]\n" +
                     "[C]--------------------------------\n" +
                     "[L]<b>TOTAL : </b>" + "[L]<u type='string'>" + totalInRupiah + "</u>\n" +
+                    "[L]<b>PAYMENT : </b>" + "[L]<u type='string'>" + paymentMethod + "</u>\n" +
                     "[L]\n" +
                     "[C]================================\n" +
                     "[L]\n" +
@@ -772,6 +776,957 @@ public class MainActivity extends AppCompatActivity {
 
                     "[C]<b> Klarise Pusat </b>\n" +
                     "[C]Indonesia \n"+
+                    "[C]<qrcode size='20'>https://web.klariselaundry.com/tnc</qrcode>\n";
+        }
+        else if (orderListSize == 5) {
+            String orderName1 = orderList.get(0).name;
+            Double orderPrice1 = orderList.get(0).priceUnit;
+            Double orderQty1 = orderList.get(0).orderedQty;
+            double sumPricePerUnit1 = orderPrice1 * orderQty1;
+            String sumPricePerUnitString1;
+            sumPricePerUnitString1 = formatRupiah.format(sumPricePerUnit1);
+            sumPricePerUnitString1 = makeRpProperly(sumPricePerUnitString1, ' ', 2);
+            String pricePerUnit1;
+            pricePerUnit1 = formatRupiah.format((double) orderPrice1);
+            pricePerUnit1 = makeRpProperly(pricePerUnit1, ' ', 2);
+
+            String orderName2 = orderList.get(1).name;
+            Double orderPrice2 = orderList.get(1).priceUnit;
+            Double orderQty2 = orderList.get(1).orderedQty;
+            double sumPricePerUnit2 = orderPrice2 * orderQty2;
+            String sumPricePerUnitString2;
+            sumPricePerUnitString2 = formatRupiah.format(sumPricePerUnit2);
+            sumPricePerUnitString2 = makeRpProperly(sumPricePerUnitString2, ' ', 2);
+            String pricePerUnit2;
+            pricePerUnit2 = formatRupiah.format((double) orderPrice2);
+            pricePerUnit2 = makeRpProperly(pricePerUnit2, ' ', 2);
+
+            String orderName3 = orderList.get(2).name;
+            Double orderPrice3 = orderList.get(2).priceUnit;
+            Double orderQty3 = orderList.get(2).orderedQty;
+            double sumPricePerUnit3 = orderPrice3 * orderQty3;
+            String sumPricePerUnitString3;
+            sumPricePerUnitString3 = formatRupiah.format(sumPricePerUnit3);
+            sumPricePerUnitString3 = makeRpProperly(sumPricePerUnitString3, ' ', 2);
+            String pricePerUnit3;
+            pricePerUnit3 = formatRupiah.format((double) orderPrice3);
+            pricePerUnit3 = makeRpProperly(pricePerUnit3, ' ', 2);
+
+            String orderName4 = orderList.get(3).name;
+            Double orderPrice4 = orderList.get(3).priceUnit;
+            Double orderQty4 = orderList.get(3).orderedQty;
+            double sumPricePerUnit4 = orderPrice4 * orderQty4;
+            String sumPricePerUnitString4;
+            sumPricePerUnitString4 = formatRupiah.format(sumPricePerUnit4);
+            sumPricePerUnitString4 = makeRpProperly(sumPricePerUnitString4, ' ', 2);
+            String pricePerUnit4;
+            pricePerUnit4 = formatRupiah.format((double) orderPrice4);
+            pricePerUnit4 = makeRpProperly(pricePerUnit4, ' ', 2);
+
+            String orderName5 = orderList.get(4).name;
+            Double orderPrice5 = orderList.get(4).priceUnit;
+            Double orderQty5 = orderList.get(4).orderedQty;
+            double sumPricePerUnit5 = orderPrice5 * orderQty5;
+            String sumPricePerUnitString5;
+            sumPricePerUnitString5 = formatRupiah.format(sumPricePerUnit5);
+            sumPricePerUnitString5 = makeRpProperly(sumPricePerUnitString5, ' ', 2);
+            String pricePerUnit5;
+            pricePerUnit5 = formatRupiah.format((double) orderPrice5);
+            pricePerUnit5 = makeRpProperly(pricePerUnit5, ' ', 2);
+
+            return "[L]\n" +
+                    "[C]<b <font size='medium'>Your Receipt</b>\n" +
+                    "[L]\n" +
+                    "[C]<font size='medium'>" + receiptNumber + "</font>\n" +
+                    "[L]\n" +
+                    "[C]<u type='string'>" + agentAddress + "</u>\n" +
+                    "[C]<u type='string'>" + agentPhone + "</u>\n" +
+                    //"[C]<u type='double'>" + format.format(new Date()) + "</u>\n" +
+                    "[C]================================\n" +
+                    "[L]<b>Agen \t: </b>" + "[L]<u type='string'>" + agentName + "</u>\n" +
+                    "[L]<b>Kasir \t: </b>" + "[L]<u type='string'>" + cashier + "</u>\n" +
+                    "[L]<b>Tanggal Terima \t: </b>" + "[L]<u type='string'>" + receiveDate + "</u>\n" +
+                    "[L]<b>Tanggal Selesai \t: </b>" + "[L]<u type='string'>" + deliveryDate + "</u>\n" +
+                    "[L]<b>Detail Kustomer \t: </b>" + "[L]<u type='string'>" + customerName + "</u>\n" +
+                    "[L]<b>Alamat \t: </b>" + "[L]<u type='string'>" + customerAddress + "</u>\n" +
+                    "[L]<b>No. Telp \t: </b>" + "[L]<u type='string'>" + customerPhone + "</u>\n" +
+                    "[C]================================\n" +
+                    "[L]\n" +
+                    // THIS IS THE LOOPING
+                    "[L]<u type='string'>" + orderName1 + "</u>[L]<u type='string'>" + sumPricePerUnitString1 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty1 + "x" + pricePerUnit1 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName2 + "</u>[L]<u type='string'>" + sumPricePerUnitString2 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty2 + "x" + pricePerUnit2 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName3 + "</u>[L]<u type='string'>" + sumPricePerUnitString3 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty3 + "x" + pricePerUnit3 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName4 + "</u>[L]<u type='string'>" + sumPricePerUnitString4 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty4 + "x" + pricePerUnit4 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName5 + "</u>[L]<u type='string'>" + sumPricePerUnitString5 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty5 + "x" + pricePerUnit5 + " / Units" + "</b>\n" +
+                    // THIS IS THE LOOPING
+                    "[L]\n" +
+                    "[C]--------------------------------\n" +
+                    "[L]<b>TOTAL : </b>" + "[L]<u type='string'>" + totalInRupiah + "</u>\n" +
+                    "[L]<b>PAYMENT : </b>" + "[L]<u type='string'>" + paymentMethod + "</u>\n" +
+                    "[L]\n" +
+                    "[C]================================\n" +
+                    "[L]\n" +
+                    "[L]\n" +
+
+                    "[C]<b> Klarise Pusat </b>\n" +
+                    "[C]Indonesia \n" +
+                    "[C]<qrcode size='20'>https://web.klariselaundry.com/tnc</qrcode>\n";
+        }
+        else if (orderListSize == 6) {
+            String orderName1 = orderList.get(0).name;
+            Double orderPrice1 = orderList.get(0).priceUnit;
+            Double orderQty1 = orderList.get(0).orderedQty;
+            double sumPricePerUnit1 = orderPrice1 * orderQty1;
+            String sumPricePerUnitString1;
+            sumPricePerUnitString1 = formatRupiah.format(sumPricePerUnit1);
+            sumPricePerUnitString1 = makeRpProperly(sumPricePerUnitString1, ' ', 2);
+            String pricePerUnit1;
+            pricePerUnit1 = formatRupiah.format((double) orderPrice1);
+            pricePerUnit1 = makeRpProperly(pricePerUnit1, ' ', 2);
+
+            String orderName2 = orderList.get(1).name;
+            Double orderPrice2 = orderList.get(1).priceUnit;
+            Double orderQty2 = orderList.get(1).orderedQty;
+            double sumPricePerUnit2 = orderPrice2 * orderQty2;
+            String sumPricePerUnitString2;
+            sumPricePerUnitString2 = formatRupiah.format(sumPricePerUnit2);
+            sumPricePerUnitString2 = makeRpProperly(sumPricePerUnitString2, ' ', 2);
+            String pricePerUnit2;
+            pricePerUnit2 = formatRupiah.format((double) orderPrice2);
+            pricePerUnit2 = makeRpProperly(pricePerUnit2, ' ', 2);
+
+            String orderName3 = orderList.get(2).name;
+            Double orderPrice3 = orderList.get(2).priceUnit;
+            Double orderQty3 = orderList.get(2).orderedQty;
+            double sumPricePerUnit3 = orderPrice3 * orderQty3;
+            String sumPricePerUnitString3;
+            sumPricePerUnitString3 = formatRupiah.format(sumPricePerUnit3);
+            sumPricePerUnitString3 = makeRpProperly(sumPricePerUnitString3, ' ', 2);
+            String pricePerUnit3;
+            pricePerUnit3 = formatRupiah.format((double) orderPrice3);
+            pricePerUnit3 = makeRpProperly(pricePerUnit3, ' ', 2);
+
+            String orderName4 = orderList.get(3).name;
+            Double orderPrice4 = orderList.get(3).priceUnit;
+            Double orderQty4 = orderList.get(3).orderedQty;
+            double sumPricePerUnit4 = orderPrice4 * orderQty4;
+            String sumPricePerUnitString4;
+            sumPricePerUnitString4 = formatRupiah.format(sumPricePerUnit4);
+            sumPricePerUnitString4 = makeRpProperly(sumPricePerUnitString4, ' ', 2);
+            String pricePerUnit4;
+            pricePerUnit4 = formatRupiah.format((double) orderPrice4);
+            pricePerUnit4 = makeRpProperly(pricePerUnit4, ' ', 2);
+
+            String orderName5 = orderList.get(4).name;
+            Double orderPrice5 = orderList.get(4).priceUnit;
+            Double orderQty5 = orderList.get(4).orderedQty;
+            double sumPricePerUnit5 = orderPrice5 * orderQty5;
+            String sumPricePerUnitString5;
+            sumPricePerUnitString5 = formatRupiah.format(sumPricePerUnit5);
+            sumPricePerUnitString5 = makeRpProperly(sumPricePerUnitString5, ' ', 2);
+            String pricePerUnit5;
+            pricePerUnit5 = formatRupiah.format((double) orderPrice5);
+            pricePerUnit5 = makeRpProperly(pricePerUnit5, ' ', 2);
+
+            String orderName6 = orderList.get(5).name;
+            Double orderPrice6 = orderList.get(5).priceUnit;
+            Double orderQty6 = orderList.get(5).orderedQty;
+            double sumPricePerUnit6 = orderPrice6 * orderQty6;
+            String sumPricePerUnitString6;
+            sumPricePerUnitString6 = formatRupiah.format(sumPricePerUnit6);
+            sumPricePerUnitString6 = makeRpProperly(sumPricePerUnitString6, ' ', 2);
+            String pricePerUnit6;
+            pricePerUnit6 = formatRupiah.format((double) orderPrice6);
+            pricePerUnit6 = makeRpProperly(pricePerUnit6, ' ', 2);
+
+            return "[L]\n" +
+                    "[C]<b <font size='medium'>Your Receipt</b>\n" +
+                    "[L]\n" +
+                    "[C]<font size='medium'>" + receiptNumber + "</font>\n" +
+                    "[L]\n" +
+                    "[C]<u type='string'>" + agentAddress + "</u>\n" +
+                    "[C]<u type='string'>" + agentPhone + "</u>\n" +
+                    //"[C]<u type='double'>" + format.format(new Date()) + "</u>\n" +
+                    "[C]================================\n" +
+                    "[L]<b>Agen \t: </b>" + "[L]<u type='string'>" + agentName + "</u>\n" +
+                    "[L]<b>Kasir \t: </b>" + "[L]<u type='string'>" + cashier + "</u>\n" +
+                    "[L]<b>Tanggal Terima \t: </b>" + "[L]<u type='string'>" + receiveDate + "</u>\n" +
+                    "[L]<b>Tanggal Selesai \t: </b>" + "[L]<u type='string'>" + deliveryDate + "</u>\n" +
+                    "[L]<b>Detail Kustomer \t: </b>" + "[L]<u type='string'>" + customerName + "</u>\n" +
+                    "[L]<b>Alamat \t: </b>" + "[L]<u type='string'>" + customerAddress + "</u>\n" +
+                    "[L]<b>No. Telp \t: </b>" + "[L]<u type='string'>" + customerPhone + "</u>\n" +
+                    "[C]================================\n" +
+                    "[L]\n" +
+                    // THIS IS THE LOOPING
+                    "[L]<u type='string'>" + orderName1 + "</u>[L]<u type='string'>" + sumPricePerUnitString1 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty1 + "x" + pricePerUnit1 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName2 + "</u>[L]<u type='string'>" + sumPricePerUnitString2 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty2 + "x" + pricePerUnit2 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName3 + "</u>[L]<u type='string'>" + sumPricePerUnitString3 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty3 + "x" + pricePerUnit3 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName4 + "</u>[L]<u type='string'>" + sumPricePerUnitString4 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty4 + "x" + pricePerUnit4 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName5 + "</u>[L]<u type='string'>" + sumPricePerUnitString5 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty5 + "x" + pricePerUnit5 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName6 + "</u>[L]<u type='string'>" + sumPricePerUnitString6 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty6 + "x" + pricePerUnit6 + " / Units" + "</b>\n" +
+                    // THIS IS THE LOOPING
+                    "[L]\n" +
+                    "[C]--------------------------------\n" +
+                    "[L]<b>TOTAL : </b>" + "[L]<u type='string'>" + totalInRupiah + "</u>\n" +
+                    "[L]<b>PAYMENT : </b>" + "[L]<u type='string'>" + paymentMethod + "</u>\n" +
+                    "[L]\n" +
+                    "[C]================================\n" +
+                    "[L]\n" +
+                    "[L]\n" +
+
+                    "[C]<b> Klarise Pusat </b>\n" +
+                    "[C]Indonesia \n" +
+                    "[C]<qrcode size='20'>https://web.klariselaundry.com/tnc</qrcode>\n";
+        }
+        else if (orderListSize == 7) {
+            String orderName1 = orderList.get(0).name;
+            Double orderPrice1 = orderList.get(0).priceUnit;
+            Double orderQty1 = orderList.get(0).orderedQty;
+            double sumPricePerUnit1 = orderPrice1 * orderQty1;
+            String sumPricePerUnitString1;
+            sumPricePerUnitString1 = formatRupiah.format(sumPricePerUnit1);
+            sumPricePerUnitString1 = makeRpProperly(sumPricePerUnitString1, ' ', 2);
+            String pricePerUnit1;
+            pricePerUnit1 = formatRupiah.format((double) orderPrice1);
+            pricePerUnit1 = makeRpProperly(pricePerUnit1, ' ', 2);
+
+            String orderName2 = orderList.get(1).name;
+            Double orderPrice2 = orderList.get(1).priceUnit;
+            Double orderQty2 = orderList.get(1).orderedQty;
+            double sumPricePerUnit2 = orderPrice2 * orderQty2;
+            String sumPricePerUnitString2;
+            sumPricePerUnitString2 = formatRupiah.format(sumPricePerUnit2);
+            sumPricePerUnitString2 = makeRpProperly(sumPricePerUnitString2, ' ', 2);
+            String pricePerUnit2;
+            pricePerUnit2 = formatRupiah.format((double) orderPrice2);
+            pricePerUnit2 = makeRpProperly(pricePerUnit2, ' ', 2);
+
+            String orderName3 = orderList.get(2).name;
+            Double orderPrice3 = orderList.get(2).priceUnit;
+            Double orderQty3 = orderList.get(2).orderedQty;
+            double sumPricePerUnit3 = orderPrice3 * orderQty3;
+            String sumPricePerUnitString3;
+            sumPricePerUnitString3 = formatRupiah.format(sumPricePerUnit3);
+            sumPricePerUnitString3 = makeRpProperly(sumPricePerUnitString3, ' ', 2);
+            String pricePerUnit3;
+            pricePerUnit3 = formatRupiah.format((double) orderPrice3);
+            pricePerUnit3 = makeRpProperly(pricePerUnit3, ' ', 2);
+
+            String orderName4 = orderList.get(3).name;
+            Double orderPrice4 = orderList.get(3).priceUnit;
+            Double orderQty4 = orderList.get(3).orderedQty;
+            double sumPricePerUnit4 = orderPrice4 * orderQty4;
+            String sumPricePerUnitString4;
+            sumPricePerUnitString4 = formatRupiah.format(sumPricePerUnit4);
+            sumPricePerUnitString4 = makeRpProperly(sumPricePerUnitString4, ' ', 2);
+            String pricePerUnit4;
+            pricePerUnit4 = formatRupiah.format((double) orderPrice4);
+            pricePerUnit4 = makeRpProperly(pricePerUnit4, ' ', 2);
+
+            String orderName5 = orderList.get(4).name;
+            Double orderPrice5 = orderList.get(4).priceUnit;
+            Double orderQty5 = orderList.get(4).orderedQty;
+            double sumPricePerUnit5 = orderPrice5 * orderQty5;
+            String sumPricePerUnitString5;
+            sumPricePerUnitString5 = formatRupiah.format(sumPricePerUnit5);
+            sumPricePerUnitString5 = makeRpProperly(sumPricePerUnitString5, ' ', 2);
+            String pricePerUnit5;
+            pricePerUnit5 = formatRupiah.format((double) orderPrice5);
+            pricePerUnit5 = makeRpProperly(pricePerUnit5, ' ', 2);
+
+            String orderName6 = orderList.get(5).name;
+            Double orderPrice6 = orderList.get(5).priceUnit;
+            Double orderQty6 = orderList.get(5).orderedQty;
+            double sumPricePerUnit6 = orderPrice6 * orderQty6;
+            String sumPricePerUnitString6;
+            sumPricePerUnitString6 = formatRupiah.format(sumPricePerUnit6);
+            sumPricePerUnitString6 = makeRpProperly(sumPricePerUnitString6, ' ', 2);
+            String pricePerUnit6;
+            pricePerUnit6 = formatRupiah.format((double) orderPrice6);
+            pricePerUnit6 = makeRpProperly(pricePerUnit6, ' ', 2);
+
+            String orderName7 = orderList.get(6).name;
+            Double orderPrice7 = orderList.get(6).priceUnit;
+            Double orderQty7 = orderList.get(6).orderedQty;
+            double sumPricePerUnit7 = orderPrice7 * orderQty7;
+            String sumPricePerUnitString7;
+            sumPricePerUnitString7 = formatRupiah.format(sumPricePerUnit7);
+            sumPricePerUnitString7 = makeRpProperly(sumPricePerUnitString7, ' ', 2);
+            String pricePerUnit7;
+            pricePerUnit7 = formatRupiah.format((double) orderPrice7);
+            pricePerUnit7 = makeRpProperly(pricePerUnit7, ' ', 2);
+
+            return "[L]\n" +
+                    "[C]<b <font size='medium'>Your Receipt</b>\n" +
+                    "[L]\n" +
+                    "[C]<font size='medium'>" + receiptNumber + "</font>\n" +
+                    "[L]\n" +
+                    "[C]<u type='string'>" + agentAddress + "</u>\n" +
+                    "[C]<u type='string'>" + agentPhone + "</u>\n" +
+                    //"[C]<u type='double'>" + format.format(new Date()) + "</u>\n" +
+                    "[C]================================\n" +
+                    "[L]<b>Agen \t: </b>" + "[L]<u type='string'>" + agentName + "</u>\n" +
+                    "[L]<b>Kasir \t: </b>" + "[L]<u type='string'>" + cashier + "</u>\n" +
+                    "[L]<b>Tanggal Terima \t: </b>" + "[L]<u type='string'>" + receiveDate + "</u>\n" +
+                    "[L]<b>Tanggal Selesai \t: </b>" + "[L]<u type='string'>" + deliveryDate + "</u>\n" +
+                    "[L]<b>Detail Kustomer \t: </b>" + "[L]<u type='string'>" + customerName + "</u>\n" +
+                    "[L]<b>Alamat \t: </b>" + "[L]<u type='string'>" + customerAddress + "</u>\n" +
+                    "[L]<b>No. Telp \t: </b>" + "[L]<u type='string'>" + customerPhone + "</u>\n" +
+                    "[C]================================\n" +
+                    "[L]\n" +
+                    // THIS IS THE LOOPING
+                    "[L]<u type='string'>" + orderName1 + "</u>[L]<u type='string'>" + sumPricePerUnitString1 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty1 + "x" + pricePerUnit1 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName2 + "</u>[L]<u type='string'>" + sumPricePerUnitString2 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty2 + "x" + pricePerUnit2 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName3 + "</u>[L]<u type='string'>" + sumPricePerUnitString3 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty3 + "x" + pricePerUnit3 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName4 + "</u>[L]<u type='string'>" + sumPricePerUnitString4 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty4 + "x" + pricePerUnit4 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName5 + "</u>[L]<u type='string'>" + sumPricePerUnitString5 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty5 + "x" + pricePerUnit5 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName6 + "</u>[L]<u type='string'>" + sumPricePerUnitString6 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty6 + "x" + pricePerUnit6 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName7 + "</u>[L]<u type='string'>" + sumPricePerUnitString7 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty7 + "x" + pricePerUnit7 + " / Units" + "</b>\n" +
+                    // THIS IS THE LOOPING
+                    "[L]\n" +
+                    "[C]--------------------------------\n" +
+                    "[L]<b>TOTAL : </b>" + "[L]<u type='string'>" + totalInRupiah + "</u>\n" +
+                    "[L]<b>PAYMENT : </b>" + "[L]<u type='string'>" + paymentMethod + "</u>\n" +
+                    "[L]\n" +
+                    "[C]================================\n" +
+                    "[L]\n" +
+                    "[L]\n" +
+
+                    "[C]<b> Klarise Pusat </b>\n" +
+                    "[C]Indonesia \n" +
+                    "[C]<qrcode size='20'>https://web.klariselaundry.com/tnc</qrcode>\n";
+        }
+        else if (orderListSize == 8) {
+            String orderName1 = orderList.get(0).name;
+            Double orderPrice1 = orderList.get(0).priceUnit;
+            Double orderQty1 = orderList.get(0).orderedQty;
+            double sumPricePerUnit1 = orderPrice1 * orderQty1;
+            String sumPricePerUnitString1;
+            sumPricePerUnitString1 = formatRupiah.format(sumPricePerUnit1);
+            sumPricePerUnitString1 = makeRpProperly(sumPricePerUnitString1, ' ', 2);
+            String pricePerUnit1;
+            pricePerUnit1 = formatRupiah.format((double) orderPrice1);
+            pricePerUnit1 = makeRpProperly(pricePerUnit1, ' ', 2);
+
+            String orderName2 = orderList.get(1).name;
+            Double orderPrice2 = orderList.get(1).priceUnit;
+            Double orderQty2 = orderList.get(1).orderedQty;
+            double sumPricePerUnit2 = orderPrice2 * orderQty2;
+            String sumPricePerUnitString2;
+            sumPricePerUnitString2 = formatRupiah.format(sumPricePerUnit2);
+            sumPricePerUnitString2 = makeRpProperly(sumPricePerUnitString2, ' ', 2);
+            String pricePerUnit2;
+            pricePerUnit2 = formatRupiah.format((double) orderPrice2);
+            pricePerUnit2 = makeRpProperly(pricePerUnit2, ' ', 2);
+
+            String orderName3 = orderList.get(2).name;
+            Double orderPrice3 = orderList.get(2).priceUnit;
+            Double orderQty3 = orderList.get(2).orderedQty;
+            double sumPricePerUnit3 = orderPrice3 * orderQty3;
+            String sumPricePerUnitString3;
+            sumPricePerUnitString3 = formatRupiah.format(sumPricePerUnit3);
+            sumPricePerUnitString3 = makeRpProperly(sumPricePerUnitString3, ' ', 2);
+            String pricePerUnit3;
+            pricePerUnit3 = formatRupiah.format((double) orderPrice3);
+            pricePerUnit3 = makeRpProperly(pricePerUnit3, ' ', 2);
+
+            String orderName4 = orderList.get(3).name;
+            Double orderPrice4 = orderList.get(3).priceUnit;
+            Double orderQty4 = orderList.get(3).orderedQty;
+            double sumPricePerUnit4 = orderPrice4 * orderQty4;
+            String sumPricePerUnitString4;
+            sumPricePerUnitString4 = formatRupiah.format(sumPricePerUnit4);
+            sumPricePerUnitString4 = makeRpProperly(sumPricePerUnitString4, ' ', 2);
+            String pricePerUnit4;
+            pricePerUnit4 = formatRupiah.format((double) orderPrice4);
+            pricePerUnit4 = makeRpProperly(pricePerUnit4, ' ', 2);
+
+            String orderName5 = orderList.get(4).name;
+            Double orderPrice5 = orderList.get(4).priceUnit;
+            Double orderQty5 = orderList.get(4).orderedQty;
+            double sumPricePerUnit5 = orderPrice5 * orderQty5;
+            String sumPricePerUnitString5;
+            sumPricePerUnitString5 = formatRupiah.format(sumPricePerUnit5);
+            sumPricePerUnitString5 = makeRpProperly(sumPricePerUnitString5, ' ', 2);
+            String pricePerUnit5;
+            pricePerUnit5 = formatRupiah.format((double) orderPrice5);
+            pricePerUnit5 = makeRpProperly(pricePerUnit5, ' ', 2);
+
+            String orderName6 = orderList.get(5).name;
+            Double orderPrice6 = orderList.get(5).priceUnit;
+            Double orderQty6 = orderList.get(5).orderedQty;
+            double sumPricePerUnit6 = orderPrice6 * orderQty6;
+            String sumPricePerUnitString6;
+            sumPricePerUnitString6 = formatRupiah.format(sumPricePerUnit6);
+            sumPricePerUnitString6 = makeRpProperly(sumPricePerUnitString6, ' ', 2);
+            String pricePerUnit6;
+            pricePerUnit6 = formatRupiah.format((double) orderPrice6);
+            pricePerUnit6 = makeRpProperly(pricePerUnit6, ' ', 2);
+
+            String orderName7 = orderList.get(6).name;
+            Double orderPrice7 = orderList.get(6).priceUnit;
+            Double orderQty7 = orderList.get(6).orderedQty;
+            double sumPricePerUnit7 = orderPrice7 * orderQty7;
+            String sumPricePerUnitString7;
+            sumPricePerUnitString7 = formatRupiah.format(sumPricePerUnit7);
+            sumPricePerUnitString7 = makeRpProperly(sumPricePerUnitString7, ' ', 2);
+            String pricePerUnit7;
+            pricePerUnit7 = formatRupiah.format((double) orderPrice7);
+            pricePerUnit7 = makeRpProperly(pricePerUnit7, ' ', 2);
+
+            String orderName8 = orderList.get(7).name;
+            Double orderPrice8 = orderList.get(7).priceUnit;
+            Double orderQty8 = orderList.get(7).orderedQty;
+            double sumPricePerUnit8 = orderPrice8 * orderQty8;
+            String sumPricePerUnitString8;
+            sumPricePerUnitString8 = formatRupiah.format(sumPricePerUnit8);
+            sumPricePerUnitString8 = makeRpProperly(sumPricePerUnitString8, ' ', 2);
+            String pricePerUnit8;
+            pricePerUnit8 = formatRupiah.format((double) orderPrice8);
+            pricePerUnit8 = makeRpProperly(pricePerUnit8, ' ', 2);
+
+            return "[L]\n" +
+                    "[C]<b <font size='medium'>Your Receipt</b>\n" +
+                    "[L]\n" +
+                    "[C]<font size='medium'>" + receiptNumber + "</font>\n" +
+                    "[L]\n" +
+                    "[C]<u type='string'>" + agentAddress + "</u>\n" +
+                    "[C]<u type='string'>" + agentPhone + "</u>\n" +
+                    //"[C]<u type='double'>" + format.format(new Date()) + "</u>\n" +
+                    "[C]================================\n" +
+                    "[L]<b>Agen \t: </b>" + "[L]<u type='string'>" + agentName + "</u>\n" +
+                    "[L]<b>Kasir \t: </b>" + "[L]<u type='string'>" + cashier + "</u>\n" +
+                    "[L]<b>Tanggal Terima \t: </b>" + "[L]<u type='string'>" + receiveDate + "</u>\n" +
+                    "[L]<b>Tanggal Selesai \t: </b>" + "[L]<u type='string'>" + deliveryDate + "</u>\n" +
+                    "[L]<b>Detail Kustomer \t: </b>" + "[L]<u type='string'>" + customerName + "</u>\n" +
+                    "[L]<b>Alamat \t: </b>" + "[L]<u type='string'>" + customerAddress + "</u>\n" +
+                    "[L]<b>No. Telp \t: </b>" + "[L]<u type='string'>" + customerPhone + "</u>\n" +
+                    "[C]================================\n" +
+                    "[L]\n" +
+                    // THIS IS THE LOOPING
+                    "[L]<u type='string'>" + orderName1 + "</u>[L]<u type='string'>" + sumPricePerUnitString1 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty1 + "x" + pricePerUnit1 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName2 + "</u>[L]<u type='string'>" + sumPricePerUnitString2 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty2 + "x" + pricePerUnit2 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName3 + "</u>[L]<u type='string'>" + sumPricePerUnitString3 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty3 + "x" + pricePerUnit3 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName4 + "</u>[L]<u type='string'>" + sumPricePerUnitString4 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty4 + "x" + pricePerUnit4 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName5 + "</u>[L]<u type='string'>" + sumPricePerUnitString5 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty5 + "x" + pricePerUnit5 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName6 + "</u>[L]<u type='string'>" + sumPricePerUnitString6 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty6 + "x" + pricePerUnit6 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName7 + "</u>[L]<u type='string'>" + sumPricePerUnitString7 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty7 + "x" + pricePerUnit7 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName8 + "</u>[L]<u type='string'>" + sumPricePerUnitString8 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty8 + "x" + pricePerUnit8 + " / Units" + "</b>\n" +
+                    // THIS IS THE LOOPING
+                    "[L]\n" +
+                    "[C]--------------------------------\n" +
+                    "[L]<b>TOTAL : </b>" + "[L]<u type='string'>" + totalInRupiah + "</u>\n" +
+                    "[L]<b>PAYMENT : </b>" + "[L]<u type='string'>" + paymentMethod + "</u>\n" +
+                    "[L]\n" +
+                    "[C]================================\n" +
+                    "[L]\n" +
+                    "[L]\n" +
+
+                    "[C]<b> Klarise Pusat </b>\n" +
+                    "[C]Indonesia \n" +
+                    "[C]<qrcode size='20'>https://web.klariselaundry.com/tnc</qrcode>\n";
+        }
+        else if (orderListSize == 9) {
+            String orderName1 = orderList.get(0).name;
+            Double orderPrice1 = orderList.get(0).priceUnit;
+            Double orderQty1 = orderList.get(0).orderedQty;
+            double sumPricePerUnit1 = orderPrice1 * orderQty1;
+            String sumPricePerUnitString1;
+            sumPricePerUnitString1 = formatRupiah.format(sumPricePerUnit1);
+            sumPricePerUnitString1 = makeRpProperly(sumPricePerUnitString1, ' ', 2);
+            String pricePerUnit1;
+            pricePerUnit1 = formatRupiah.format((double) orderPrice1);
+            pricePerUnit1 = makeRpProperly(pricePerUnit1, ' ', 2);
+
+            String orderName2 = orderList.get(1).name;
+            Double orderPrice2 = orderList.get(1).priceUnit;
+            Double orderQty2 = orderList.get(1).orderedQty;
+            double sumPricePerUnit2 = orderPrice2 * orderQty2;
+            String sumPricePerUnitString2;
+            sumPricePerUnitString2 = formatRupiah.format(sumPricePerUnit2);
+            sumPricePerUnitString2 = makeRpProperly(sumPricePerUnitString2, ' ', 2);
+            String pricePerUnit2;
+            pricePerUnit2 = formatRupiah.format((double) orderPrice2);
+            pricePerUnit2 = makeRpProperly(pricePerUnit2, ' ', 2);
+
+            String orderName3 = orderList.get(2).name;
+            Double orderPrice3 = orderList.get(2).priceUnit;
+            Double orderQty3 = orderList.get(2).orderedQty;
+            double sumPricePerUnit3 = orderPrice3 * orderQty3;
+            String sumPricePerUnitString3;
+            sumPricePerUnitString3 = formatRupiah.format(sumPricePerUnit3);
+            sumPricePerUnitString3 = makeRpProperly(sumPricePerUnitString3, ' ', 2);
+            String pricePerUnit3;
+            pricePerUnit3 = formatRupiah.format((double) orderPrice3);
+            pricePerUnit3 = makeRpProperly(pricePerUnit3, ' ', 2);
+
+            String orderName4 = orderList.get(3).name;
+            Double orderPrice4 = orderList.get(3).priceUnit;
+            Double orderQty4 = orderList.get(3).orderedQty;
+            double sumPricePerUnit4 = orderPrice4 * orderQty4;
+            String sumPricePerUnitString4;
+            sumPricePerUnitString4 = formatRupiah.format(sumPricePerUnit4);
+            sumPricePerUnitString4 = makeRpProperly(sumPricePerUnitString4, ' ', 2);
+            String pricePerUnit4;
+            pricePerUnit4 = formatRupiah.format((double) orderPrice4);
+            pricePerUnit4 = makeRpProperly(pricePerUnit4, ' ', 2);
+
+            String orderName5 = orderList.get(4).name;
+            Double orderPrice5 = orderList.get(4).priceUnit;
+            Double orderQty5 = orderList.get(4).orderedQty;
+            double sumPricePerUnit5 = orderPrice5 * orderQty5;
+            String sumPricePerUnitString5;
+            sumPricePerUnitString5 = formatRupiah.format(sumPricePerUnit5);
+            sumPricePerUnitString5 = makeRpProperly(sumPricePerUnitString5, ' ', 2);
+            String pricePerUnit5;
+            pricePerUnit5 = formatRupiah.format((double) orderPrice5);
+            pricePerUnit5 = makeRpProperly(pricePerUnit5, ' ', 2);
+
+            String orderName6 = orderList.get(5).name;
+            Double orderPrice6 = orderList.get(5).priceUnit;
+            Double orderQty6 = orderList.get(5).orderedQty;
+            double sumPricePerUnit6 = orderPrice6 * orderQty6;
+            String sumPricePerUnitString6;
+            sumPricePerUnitString6 = formatRupiah.format(sumPricePerUnit6);
+            sumPricePerUnitString6 = makeRpProperly(sumPricePerUnitString6, ' ', 2);
+            String pricePerUnit6;
+            pricePerUnit6 = formatRupiah.format((double) orderPrice6);
+            pricePerUnit6 = makeRpProperly(pricePerUnit6, ' ', 2);
+
+            String orderName7 = orderList.get(6).name;
+            Double orderPrice7 = orderList.get(6).priceUnit;
+            Double orderQty7 = orderList.get(6).orderedQty;
+            double sumPricePerUnit7 = orderPrice7 * orderQty7;
+            String sumPricePerUnitString7;
+            sumPricePerUnitString7 = formatRupiah.format(sumPricePerUnit7);
+            sumPricePerUnitString7 = makeRpProperly(sumPricePerUnitString7, ' ', 2);
+            String pricePerUnit7;
+            pricePerUnit7 = formatRupiah.format((double) orderPrice7);
+            pricePerUnit7 = makeRpProperly(pricePerUnit7, ' ', 2);
+
+            String orderName8 = orderList.get(7).name;
+            Double orderPrice8 = orderList.get(7).priceUnit;
+            Double orderQty8 = orderList.get(7).orderedQty;
+            double sumPricePerUnit8 = orderPrice8 * orderQty8;
+            String sumPricePerUnitString8;
+            sumPricePerUnitString8 = formatRupiah.format(sumPricePerUnit8);
+            sumPricePerUnitString8 = makeRpProperly(sumPricePerUnitString8, ' ', 2);
+            String pricePerUnit8;
+            pricePerUnit8 = formatRupiah.format((double) orderPrice8);
+            pricePerUnit8 = makeRpProperly(pricePerUnit8, ' ', 2);
+
+            String orderName9 = orderList.get(8).name;
+            Double orderPrice9 = orderList.get(8).priceUnit;
+            Double orderQty9 = orderList.get(8).orderedQty;
+            double sumPricePerUnit9 = orderPrice9 * orderQty9;
+            String sumPricePerUnitString9;
+            sumPricePerUnitString9 = formatRupiah.format(sumPricePerUnit9);
+            sumPricePerUnitString9 = makeRpProperly(sumPricePerUnitString9, ' ', 2);
+            String pricePerUnit9;
+            pricePerUnit9 = formatRupiah.format((double) orderPrice9);
+            pricePerUnit9 = makeRpProperly(pricePerUnit9, ' ', 2);
+
+            return "[L]\n" +
+                    "[C]<b <font size='medium'>Your Receipt</b>\n" +
+                    "[L]\n" +
+                    "[C]<font size='medium'>" + receiptNumber + "</font>\n" +
+                    "[L]\n" +
+                    "[C]<u type='string'>" + agentAddress + "</u>\n" +
+                    "[C]<u type='string'>" + agentPhone + "</u>\n" +
+                    //"[C]<u type='double'>" + format.format(new Date()) + "</u>\n" +
+                    "[C]================================\n" +
+                    "[L]<b>Agen \t: </b>" + "[L]<u type='string'>" + agentName + "</u>\n" +
+                    "[L]<b>Kasir \t: </b>" + "[L]<u type='string'>" + cashier + "</u>\n" +
+                    "[L]<b>Tanggal Terima \t: </b>" + "[L]<u type='string'>" + receiveDate + "</u>\n" +
+                    "[L]<b>Tanggal Selesai \t: </b>" + "[L]<u type='string'>" + deliveryDate + "</u>\n" +
+                    "[L]<b>Detail Kustomer \t: </b>" + "[L]<u type='string'>" + customerName + "</u>\n" +
+                    "[L]<b>Alamat \t: </b>" + "[L]<u type='string'>" + customerAddress + "</u>\n" +
+                    "[L]<b>No. Telp \t: </b>" + "[L]<u type='string'>" + customerPhone + "</u>\n" +
+                    "[C]================================\n" +
+                    "[L]\n" +
+                    // THIS IS THE LOOPING
+                    "[L]<u type='string'>" + orderName1 + "</u>[L]<u type='string'>" + sumPricePerUnitString1 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty1 + "x" + pricePerUnit1 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName2 + "</u>[L]<u type='string'>" + sumPricePerUnitString2 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty2 + "x" + pricePerUnit2 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName3 + "</u>[L]<u type='string'>" + sumPricePerUnitString3 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty3 + "x" + pricePerUnit3 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName4 + "</u>[L]<u type='string'>" + sumPricePerUnitString4 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty4 + "x" + pricePerUnit4 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName5 + "</u>[L]<u type='string'>" + sumPricePerUnitString5 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty5 + "x" + pricePerUnit5 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName6 + "</u>[L]<u type='string'>" + sumPricePerUnitString6 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty6 + "x" + pricePerUnit6 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName7 + "</u>[L]<u type='string'>" + sumPricePerUnitString7 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty7 + "x" + pricePerUnit7 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName8 + "</u>[L]<u type='string'>" + sumPricePerUnitString8 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty8 + "x" + pricePerUnit8 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName9 + "</u>[L]<u type='string'>" + sumPricePerUnitString9 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty9 + "x" + pricePerUnit9 + " / Units" + "</b>\n" +
+                    // THIS IS THE LOOPING
+                    "[L]\n" +
+                    "[C]--------------------------------\n" +
+                    "[L]<b>TOTAL   : </b>" + "[L]<u type='string'>" + totalInRupiah + "</u>\n" +
+                    "[L]<b>PAYMENT : </b>" + "[L]<u type='string'>" + paymentMethod + "</u>\n" +
+                    "[L]\n" +
+                    "[C]================================\n" +
+                    "[L]\n" +
+                    "[L]\n" +
+
+                    "[C]<b> Klarise Pusat </b>\n" +
+                    "[C]Indonesia \n" +
+                    "[C]<qrcode size='20'>https://web.klariselaundry.com/tnc</qrcode>\n";
+        }
+        else if (orderListSize == 10) {
+            String orderName1 = orderList.get(0).name;
+            Double orderPrice1 = orderList.get(0).priceUnit;
+            Double orderQty1 = orderList.get(0).orderedQty;
+            double sumPricePerUnit1 = orderPrice1 * orderQty1;
+            String sumPricePerUnitString1;
+            sumPricePerUnitString1 = formatRupiah.format(sumPricePerUnit1);
+            sumPricePerUnitString1 = makeRpProperly(sumPricePerUnitString1, ' ', 2);
+            String pricePerUnit1;
+            pricePerUnit1 = formatRupiah.format((double) orderPrice1);
+            pricePerUnit1 = makeRpProperly(pricePerUnit1, ' ', 2);
+
+            String orderName2 = orderList.get(1).name;
+            Double orderPrice2 = orderList.get(1).priceUnit;
+            Double orderQty2 = orderList.get(1).orderedQty;
+            double sumPricePerUnit2 = orderPrice2 * orderQty2;
+            String sumPricePerUnitString2;
+            sumPricePerUnitString2 = formatRupiah.format(sumPricePerUnit2);
+            sumPricePerUnitString2 = makeRpProperly(sumPricePerUnitString2, ' ', 2);
+            String pricePerUnit2;
+            pricePerUnit2 = formatRupiah.format((double) orderPrice2);
+            pricePerUnit2 = makeRpProperly(pricePerUnit2, ' ', 2);
+
+            String orderName3 = orderList.get(2).name;
+            Double orderPrice3 = orderList.get(2).priceUnit;
+            Double orderQty3 = orderList.get(2).orderedQty;
+            double sumPricePerUnit3 = orderPrice3 * orderQty3;
+            String sumPricePerUnitString3;
+            sumPricePerUnitString3 = formatRupiah.format(sumPricePerUnit3);
+            sumPricePerUnitString3 = makeRpProperly(sumPricePerUnitString3, ' ', 2);
+            String pricePerUnit3;
+            pricePerUnit3 = formatRupiah.format((double) orderPrice3);
+            pricePerUnit3 = makeRpProperly(pricePerUnit3, ' ', 2);
+
+            String orderName4 = orderList.get(3).name;
+            Double orderPrice4 = orderList.get(3).priceUnit;
+            Double orderQty4 = orderList.get(3).orderedQty;
+            double sumPricePerUnit4 = orderPrice4 * orderQty4;
+            String sumPricePerUnitString4;
+            sumPricePerUnitString4 = formatRupiah.format(sumPricePerUnit4);
+            sumPricePerUnitString4 = makeRpProperly(sumPricePerUnitString4, ' ', 2);
+            String pricePerUnit4;
+            pricePerUnit4 = formatRupiah.format((double) orderPrice4);
+            pricePerUnit4 = makeRpProperly(pricePerUnit4, ' ', 2);
+
+            String orderName5 = orderList.get(4).name;
+            Double orderPrice5 = orderList.get(4).priceUnit;
+            Double orderQty5 = orderList.get(4).orderedQty;
+            double sumPricePerUnit5 = orderPrice5 * orderQty5;
+            String sumPricePerUnitString5;
+            sumPricePerUnitString5 = formatRupiah.format(sumPricePerUnit5);
+            sumPricePerUnitString5 = makeRpProperly(sumPricePerUnitString5, ' ', 2);
+            String pricePerUnit5;
+            pricePerUnit5 = formatRupiah.format((double) orderPrice5);
+            pricePerUnit5 = makeRpProperly(pricePerUnit5, ' ', 2);
+
+            String orderName6 = orderList.get(5).name;
+            Double orderPrice6 = orderList.get(5).priceUnit;
+            Double orderQty6 = orderList.get(5).orderedQty;
+            double sumPricePerUnit6 = orderPrice6 * orderQty6;
+            String sumPricePerUnitString6;
+            sumPricePerUnitString6 = formatRupiah.format(sumPricePerUnit6);
+            sumPricePerUnitString6 = makeRpProperly(sumPricePerUnitString6, ' ', 2);
+            String pricePerUnit6;
+            pricePerUnit6 = formatRupiah.format((double) orderPrice6);
+            pricePerUnit6 = makeRpProperly(pricePerUnit6, ' ', 2);
+
+            String orderName7 = orderList.get(6).name;
+            Double orderPrice7 = orderList.get(6).priceUnit;
+            Double orderQty7 = orderList.get(6).orderedQty;
+            double sumPricePerUnit7 = orderPrice7 * orderQty7;
+            String sumPricePerUnitString7;
+            sumPricePerUnitString7 = formatRupiah.format(sumPricePerUnit7);
+            sumPricePerUnitString7 = makeRpProperly(sumPricePerUnitString7, ' ', 2);
+            String pricePerUnit7;
+            pricePerUnit7 = formatRupiah.format((double) orderPrice7);
+            pricePerUnit7 = makeRpProperly(pricePerUnit7, ' ', 2);
+
+            String orderName8 = orderList.get(7).name;
+            Double orderPrice8 = orderList.get(7).priceUnit;
+            Double orderQty8 = orderList.get(7).orderedQty;
+            double sumPricePerUnit8 = orderPrice8 * orderQty8;
+            String sumPricePerUnitString8;
+            sumPricePerUnitString8 = formatRupiah.format(sumPricePerUnit8);
+            sumPricePerUnitString8 = makeRpProperly(sumPricePerUnitString8, ' ', 2);
+            String pricePerUnit8;
+            pricePerUnit8 = formatRupiah.format((double) orderPrice8);
+            pricePerUnit8 = makeRpProperly(pricePerUnit8, ' ', 2);
+
+            String orderName9 = orderList.get(8).name;
+            Double orderPrice9 = orderList.get(8).priceUnit;
+            Double orderQty9 = orderList.get(8).orderedQty;
+            double sumPricePerUnit9 = orderPrice9 * orderQty9;
+            String sumPricePerUnitString9;
+            sumPricePerUnitString9 = formatRupiah.format(sumPricePerUnit9);
+            sumPricePerUnitString9 = makeRpProperly(sumPricePerUnitString9, ' ', 2);
+            String pricePerUnit9;
+            pricePerUnit9 = formatRupiah.format((double) orderPrice9);
+            pricePerUnit9 = makeRpProperly(pricePerUnit9, ' ', 2);
+
+            String orderName10 = orderList.get(9).name;
+            Double orderPrice10 = orderList.get(9).priceUnit;
+            Double orderQty10 = orderList.get(9).orderedQty;
+            double sumPricePerUnit10 = orderPrice10 * orderQty10;
+            String sumPricePerUnitString10;
+            sumPricePerUnitString10 = formatRupiah.format(sumPricePerUnit10);
+            sumPricePerUnitString10 = makeRpProperly(sumPricePerUnitString10, ' ', 2);
+            String pricePerUnit10;
+            pricePerUnit10 = formatRupiah.format((double) orderPrice10);
+            pricePerUnit10 = makeRpProperly(pricePerUnit10, ' ', 2);
+
+            return "[L]\n" +
+                    "[C]<b <font size='medium'>Your Receipt</b>\n" +
+                    "[L]\n" +
+                    "[C]<font size='medium'>" + receiptNumber + "</font>\n" +
+                    "[L]\n" +
+                    "[C]<u type='string'>" + agentAddress + "</u>\n" +
+                    "[C]<u type='string'>" + agentPhone + "</u>\n" +
+                    //"[C]<u type='double'>" + format.format(new Date()) + "</u>\n" +
+                    "[C]================================\n" +
+                    "[L]<b>Agen \t: </b>" + "[L]<u type='string'>" + agentName + "</u>\n" +
+                    "[L]<b>Kasir \t: </b>" + "[L]<u type='string'>" + cashier + "</u>\n" +
+                    "[L]<b>Tanggal Terima \t: </b>" + "[L]<u type='string'>" + receiveDate + "</u>\n" +
+                    "[L]<b>Tanggal Selesai \t: </b>" + "[L]<u type='string'>" + deliveryDate + "</u>\n" +
+                    "[L]<b>Detail Kustomer \t: </b>" + "[L]<u type='string'>" + customerName + "</u>\n" +
+                    "[L]<b>Alamat \t: </b>" + "[L]<u type='string'>" + customerAddress + "</u>\n" +
+                    "[L]<b>No. Telp \t: </b>" + "[L]<u type='string'>" + customerPhone + "</u>\n" +
+                    "[C]================================\n" +
+                    "[L]\n" +
+                    // THIS IS THE LOOPING
+                    "[L]<u type='string'>" + orderName1 + "</u>[L]<u type='string'>" + sumPricePerUnitString1 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty1 + "x" + pricePerUnit1 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName2 + "</u>[L]<u type='string'>" + sumPricePerUnitString2 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty2 + "x" + pricePerUnit2 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName3 + "</u>[L]<u type='string'>" + sumPricePerUnitString3 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty3 + "x" + pricePerUnit3 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName4 + "</u>[L]<u type='string'>" + sumPricePerUnitString4 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty4 + "x" + pricePerUnit4 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName5 + "</u>[L]<u type='string'>" + sumPricePerUnitString5 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty5 + "x" + pricePerUnit5 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName6 + "</u>[L]<u type='string'>" + sumPricePerUnitString6 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty6 + "x" + pricePerUnit6 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName7 + "</u>[L]<u type='string'>" + sumPricePerUnitString7 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty7 + "x" + pricePerUnit7 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName8 + "</u>[L]<u type='string'>" + sumPricePerUnitString8 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty8 + "x" + pricePerUnit8 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName9 + "</u>[L]<u type='string'>" + sumPricePerUnitString9 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty9 + "x" + pricePerUnit9 + " / Units" + "</b>\n" +
+
+                    "[L]\n" +
+
+                    "[L]<u type='string'>" + orderName10 + "</u>[L]<u type='string'>" + sumPricePerUnitString10 + "</u>\n" +
+                    "[L]<b>Quantity</b>\n" +
+                    "[L]<b type='string'>" + orderQty10 + "x" + pricePerUnit10 + " / Units" + "</b>\n" +
+                    // THIS IS THE LOOPING
+                    "[L]\n" +
+                    "[C]--------------------------------\n" +
+                    "[L]<b>TOTAL   : </b>" + "[L]<u type='string'>" + totalInRupiah + "</u>\n" +
+                    "[L]<b>PAYMENT : </b>" + "[L]<u type='string'>" + paymentMethod + "</u>\n" +
+                    "[L]\n" +
+                    "[C]================================\n" +
+                    "[L]\n" +
+                    "[L]\n" +
+
+                    "[C]<b> Klarise Pusat </b>\n" +
+                    "[C]Indonesia \n" +
                     "[C]<qrcode size='20'>https://web.klariselaundry.com/tnc</qrcode>\n";
         }
         return "null";
