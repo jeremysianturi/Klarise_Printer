@@ -629,7 +629,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName3 = orderList.get(2).name;
             Double orderPrice3 = orderList.get(2).priceUnit;
             Double orderQty3 = orderList.get(2).orderedQty;
-            Double discountPercentage3 = orderList.get(3).discount;
+            Double discountPercentage3 = orderList.get(2).discount;
             double sumPricePerUnit3 = orderPrice3 * orderQty3;
             String sumPricePerUnitString3;
             sumPricePerUnitString3 = formatRupiah.format(sumPricePerUnit3);
