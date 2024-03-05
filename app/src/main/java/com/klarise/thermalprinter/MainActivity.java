@@ -667,14 +667,14 @@ public class MainActivity extends AppCompatActivity {
                     "[L]<u type='string'>" + orderName2 + "</u>[L]<u type='string'>" + sumPricePerUnitString2 + "</u>\n"+
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty2 + "x" + pricePerUnit2 + " / Units" + "</b>\n"+
-                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage2 + "</b>\n"+
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage2 + " </b>\n"+
 
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName3 + "</u>[L]<u type='string'>" + sumPricePerUnitString3 + "</u>\n"+
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty3 + "x" + pricePerUnit3 + " / Units" + "</b>\n"+
-                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage3 + "</b>\n"+
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage3 + " </b>\n"+
                     // THIS IS THE LOOPING
                     "[L]\n" +
                     "[C]--------------------------------\n" +
