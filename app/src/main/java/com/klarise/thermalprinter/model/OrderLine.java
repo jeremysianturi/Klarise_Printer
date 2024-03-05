@@ -13,6 +13,9 @@ public class OrderLine {
     @SerializedName("ordered_qty")
     public Double orderedQty;
 
+    @SerializedName("discount")
+    public Double discount;
+
     @SerializedName("ordered_uom")
     public String orderedUom;
 

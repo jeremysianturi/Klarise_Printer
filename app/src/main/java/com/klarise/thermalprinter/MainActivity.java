@@ -484,13 +484,14 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < orderListSize; i++) {
 
             Log.d("TAG", "[value order list] => " + orderList.get(i).name  + orderList.get(i).priceUnit
-                    + orderList.get(i).orderedQty + orderList.get(i).orderedUom);
+                    + orderList.get(i).orderedQty + orderList.get(i).orderedUom + orderList.get(i).discount);
         }
 
         if (orderListSize == 1){
             String orderName = orderList.get(0).name;
             Double orderPrice = orderList.get(0).priceUnit;
             Double orderQty = orderList.get(0).orderedQty;
+            Double discountPercentage = orderList.get(0).discount;
             double sumPricePerUnit = orderPrice * orderQty;
             String sumPricePerUnitString;
             sumPricePerUnitString = formatRupiah.format(sumPricePerUnit);
@@ -519,7 +520,7 @@ public class MainActivity extends AppCompatActivity {
                     "[L]<u type='string'>" + orderName + "</u>[L]<u type='string'>" + sumPricePerUnitString + "</u>\n"+
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty + "x" + pricePerUnit + " / Units" + "</b>\n"+
-
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage + "</b>\n"+
                     "[L]\n" +
                     "[C]--------------------------------\n" +
                     "[L]<b>TOTAL : </b>" + "[L]<u type='string'>" + totalInRupiah + "</u>\n" +
@@ -537,6 +538,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName1 = orderList.get(0).name;
             Double orderPrice1 = orderList.get(0).priceUnit;
             Double orderQty1 = orderList.get(0).orderedQty;
+            Double discountPercentage = orderList.get(0).discount;
             double sumPricePerUnit1 = orderPrice1 * orderQty1;
             String sumPricePerUnitString1;
             sumPricePerUnitString1 = formatRupiah.format(sumPricePerUnit1);
@@ -548,6 +550,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName2 = orderList.get(1).name;
             Double orderPrice2 = orderList.get(1).priceUnit;
             Double orderQty2 = orderList.get(1).orderedQty;
+            Double discountPercentage2 = orderList.get(1).discount;
             double sumPricePerUnit2 = orderPrice2 * orderQty2;
             String sumPricePerUnitString2;
             sumPricePerUnitString2 = formatRupiah.format(sumPricePerUnit2);
@@ -577,12 +580,13 @@ public class MainActivity extends AppCompatActivity {
                     "[L]<u type='string'>" + orderName1 + "</u>[L]<u type='string'>" + sumPricePerUnitString1 + "</u>\n"+
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty1 + "x" + pricePerUnit1 + " / Units" + "</b>\n"+
-
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage + "</b>\n"+
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName2 + "</u>[L]<u type='string'>" + sumPricePerUnitString2 + "</u>\n"+
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty2 + "x" + pricePerUnit2 + " / Units" + "</b>\n"+
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage2 + "</b>\n"+
                     // THIS IS THE LOOPING
                     "[L]\n" +
                     "[C]--------------------------------\n" +
@@ -601,6 +605,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName1 = orderList.get(0).name;
             Double orderPrice1 = orderList.get(0).priceUnit;
             Double orderQty1 = orderList.get(0).orderedQty;
+            Double discountPercentage = orderList.get(0).discount;
             double sumPricePerUnit1 = orderPrice1 * orderQty1;
             String sumPricePerUnitString1;
             sumPricePerUnitString1 = formatRupiah.format(sumPricePerUnit1);
@@ -612,6 +617,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName2 = orderList.get(1).name;
             Double orderPrice2 = orderList.get(1).priceUnit;
             Double orderQty2 = orderList.get(1).orderedQty;
+            Double discountPercentage2 = orderList.get(1).discount;
             double sumPricePerUnit2 = orderPrice2 * orderQty2;
             String sumPricePerUnitString2;
             sumPricePerUnitString2 = formatRupiah.format(sumPricePerUnit2);
@@ -623,6 +629,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName3 = orderList.get(2).name;
             Double orderPrice3 = orderList.get(2).priceUnit;
             Double orderQty3 = orderList.get(2).orderedQty;
+            Double discountPercentage3 = orderList.get(3).discount;
             double sumPricePerUnit3 = orderPrice3 * orderQty3;
             String sumPricePerUnitString3;
             sumPricePerUnitString3 = formatRupiah.format(sumPricePerUnit3);
@@ -653,18 +660,21 @@ public class MainActivity extends AppCompatActivity {
                     "[L]<u type='string'>" + orderName1 + "</u>[L]<u type='string'>" + sumPricePerUnitString1 + "</u>\n"+
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty1 + "x" + pricePerUnit1 + " / Units" + "</b>\n"+
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage + "</b>\n"+
 
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName2 + "</u>[L]<u type='string'>" + sumPricePerUnitString2 + "</u>\n"+
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty2 + "x" + pricePerUnit2 + " / Units" + "</b>\n"+
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage2 + "</b>\n"+
 
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName3 + "</u>[L]<u type='string'>" + sumPricePerUnitString3 + "</u>\n"+
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty3 + "x" + pricePerUnit3 + " / Units" + "</b>\n"+
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage3 + "</b>\n"+
                     // THIS IS THE LOOPING
                     "[L]\n" +
                     "[C]--------------------------------\n" +
@@ -683,6 +693,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName1 = orderList.get(0).name;
             Double orderPrice1 = orderList.get(0).priceUnit;
             Double orderQty1 = orderList.get(0).orderedQty;
+            Double discountPercentage = orderList.get(0).discount;
             double sumPricePerUnit1 = orderPrice1 * orderQty1;
             String sumPricePerUnitString1;
             sumPricePerUnitString1 = formatRupiah.format(sumPricePerUnit1);
@@ -694,6 +705,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName2 = orderList.get(1).name;
             Double orderPrice2 = orderList.get(1).priceUnit;
             Double orderQty2 = orderList.get(1).orderedQty;
+            Double discountPercentage2 = orderList.get(1).discount;
             double sumPricePerUnit2 = orderPrice2 * orderQty2;
             String sumPricePerUnitString2;
             sumPricePerUnitString2 = formatRupiah.format(sumPricePerUnit2);
@@ -705,6 +717,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName3 = orderList.get(2).name;
             Double orderPrice3 = orderList.get(2).priceUnit;
             Double orderQty3 = orderList.get(2).orderedQty;
+            Double discountPercentage3 = orderList.get(2).discount;
             double sumPricePerUnit3 = orderPrice3 * orderQty3;
             String sumPricePerUnitString3;
             sumPricePerUnitString3 = formatRupiah.format(sumPricePerUnit3);
@@ -716,6 +729,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName4 = orderList.get(3).name;
             Double orderPrice4 = orderList.get(3).priceUnit;
             Double orderQty4 = orderList.get(3).orderedQty;
+            Double discountPercentage4 = orderList.get(3).discount;
             double sumPricePerUnit4 = orderPrice4 * orderQty4;
             String sumPricePerUnitString4;
             sumPricePerUnitString4 = formatRupiah.format(sumPricePerUnit4);
@@ -746,24 +760,28 @@ public class MainActivity extends AppCompatActivity {
                     "[L]<u type='string'>" + orderName1 + "</u>[L]<u type='string'>" + sumPricePerUnitString1 + "</u>\n"+
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty1 + "x" + pricePerUnit1 + " / Units" + "</b>\n"+
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage + "</b>\n"+
 
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName2 + "</u>[L]<u type='string'>" + sumPricePerUnitString2 + "</u>\n"+
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty2 + "x" + pricePerUnit2 + " / Units" + "</b>\n"+
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage2 + "</b>\n"+
 
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName3 + "</u>[L]<u type='string'>" + sumPricePerUnitString3 + "</u>\n"+
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty3 + "x" + pricePerUnit3 + " / Units" + "</b>\n"+
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage3 + "</b>\n"+
 
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName4 + "</u>[L]<u type='string'>" + sumPricePerUnitString4 + "</u>\n"+
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty4 + "x" + pricePerUnit4 + " / Units" + "</b>\n"+
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage4 + "</b>\n"+
                     // THIS IS THE LOOPING
                     "[L]\n" +
                     "[C]--------------------------------\n" +
@@ -782,6 +800,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName1 = orderList.get(0).name;
             Double orderPrice1 = orderList.get(0).priceUnit;
             Double orderQty1 = orderList.get(0).orderedQty;
+            Double discountPercentage = orderList.get(0).discount;
             double sumPricePerUnit1 = orderPrice1 * orderQty1;
             String sumPricePerUnitString1;
             sumPricePerUnitString1 = formatRupiah.format(sumPricePerUnit1);
@@ -793,6 +812,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName2 = orderList.get(1).name;
             Double orderPrice2 = orderList.get(1).priceUnit;
             Double orderQty2 = orderList.get(1).orderedQty;
+            Double discountPercentage2 = orderList.get(1).discount;
             double sumPricePerUnit2 = orderPrice2 * orderQty2;
             String sumPricePerUnitString2;
             sumPricePerUnitString2 = formatRupiah.format(sumPricePerUnit2);
@@ -804,6 +824,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName3 = orderList.get(2).name;
             Double orderPrice3 = orderList.get(2).priceUnit;
             Double orderQty3 = orderList.get(2).orderedQty;
+            Double discountPercentage3 = orderList.get(2).discount;
             double sumPricePerUnit3 = orderPrice3 * orderQty3;
             String sumPricePerUnitString3;
             sumPricePerUnitString3 = formatRupiah.format(sumPricePerUnit3);
@@ -815,6 +836,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName4 = orderList.get(3).name;
             Double orderPrice4 = orderList.get(3).priceUnit;
             Double orderQty4 = orderList.get(3).orderedQty;
+            Double discountPercentage4 = orderList.get(3).discount;
             double sumPricePerUnit4 = orderPrice4 * orderQty4;
             String sumPricePerUnitString4;
             sumPricePerUnitString4 = formatRupiah.format(sumPricePerUnit4);
@@ -826,6 +848,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName5 = orderList.get(4).name;
             Double orderPrice5 = orderList.get(4).priceUnit;
             Double orderQty5 = orderList.get(4).orderedQty;
+            Double discountPercentage5 = orderList.get(4).discount;
             double sumPricePerUnit5 = orderPrice5 * orderQty5;
             String sumPricePerUnitString5;
             sumPricePerUnitString5 = formatRupiah.format(sumPricePerUnit5);
@@ -856,30 +879,35 @@ public class MainActivity extends AppCompatActivity {
                     "[L]<u type='string'>" + orderName1 + "</u>[L]<u type='string'>" + sumPricePerUnitString1 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty1 + "x" + pricePerUnit1 + " / Units" + "</b>\n" +
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage + "</b>\n"+
 
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName2 + "</u>[L]<u type='string'>" + sumPricePerUnitString2 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty2 + "x" + pricePerUnit2 + " / Units" + "</b>\n" +
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage2 + "</b>\n"+
 
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName3 + "</u>[L]<u type='string'>" + sumPricePerUnitString3 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty3 + "x" + pricePerUnit3 + " / Units" + "</b>\n" +
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage3 + "</b>\n"+
 
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName4 + "</u>[L]<u type='string'>" + sumPricePerUnitString4 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty4 + "x" + pricePerUnit4 + " / Units" + "</b>\n" +
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage4 + "</b>\n"+
 
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName5 + "</u>[L]<u type='string'>" + sumPricePerUnitString5 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty5 + "x" + pricePerUnit5 + " / Units" + "</b>\n" +
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage5 + "</b>\n"+
                     // THIS IS THE LOOPING
                     "[L]\n" +
                     "[C]--------------------------------\n" +
@@ -898,6 +926,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName1 = orderList.get(0).name;
             Double orderPrice1 = orderList.get(0).priceUnit;
             Double orderQty1 = orderList.get(0).orderedQty;
+            Double discountPercentage = orderList.get(0).discount;
             double sumPricePerUnit1 = orderPrice1 * orderQty1;
             String sumPricePerUnitString1;
             sumPricePerUnitString1 = formatRupiah.format(sumPricePerUnit1);
@@ -909,6 +938,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName2 = orderList.get(1).name;
             Double orderPrice2 = orderList.get(1).priceUnit;
             Double orderQty2 = orderList.get(1).orderedQty;
+            Double discountPercentage2 = orderList.get(1).discount;
             double sumPricePerUnit2 = orderPrice2 * orderQty2;
             String sumPricePerUnitString2;
             sumPricePerUnitString2 = formatRupiah.format(sumPricePerUnit2);
@@ -920,6 +950,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName3 = orderList.get(2).name;
             Double orderPrice3 = orderList.get(2).priceUnit;
             Double orderQty3 = orderList.get(2).orderedQty;
+            Double discountPercentage3 = orderList.get(2).discount;
             double sumPricePerUnit3 = orderPrice3 * orderQty3;
             String sumPricePerUnitString3;
             sumPricePerUnitString3 = formatRupiah.format(sumPricePerUnit3);
@@ -931,6 +962,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName4 = orderList.get(3).name;
             Double orderPrice4 = orderList.get(3).priceUnit;
             Double orderQty4 = orderList.get(3).orderedQty;
+            Double discountPercentage4 = orderList.get(3).discount;
             double sumPricePerUnit4 = orderPrice4 * orderQty4;
             String sumPricePerUnitString4;
             sumPricePerUnitString4 = formatRupiah.format(sumPricePerUnit4);
@@ -942,6 +974,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName5 = orderList.get(4).name;
             Double orderPrice5 = orderList.get(4).priceUnit;
             Double orderQty5 = orderList.get(4).orderedQty;
+            Double discountPercentage5 = orderList.get(4).discount;
             double sumPricePerUnit5 = orderPrice5 * orderQty5;
             String sumPricePerUnitString5;
             sumPricePerUnitString5 = formatRupiah.format(sumPricePerUnit5);
@@ -953,6 +986,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName6 = orderList.get(5).name;
             Double orderPrice6 = orderList.get(5).priceUnit;
             Double orderQty6 = orderList.get(5).orderedQty;
+            Double discountPercentage6 = orderList.get(5).discount;
             double sumPricePerUnit6 = orderPrice6 * orderQty6;
             String sumPricePerUnitString6;
             sumPricePerUnitString6 = formatRupiah.format(sumPricePerUnit6);
@@ -983,36 +1017,42 @@ public class MainActivity extends AppCompatActivity {
                     "[L]<u type='string'>" + orderName1 + "</u>[L]<u type='string'>" + sumPricePerUnitString1 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty1 + "x" + pricePerUnit1 + " / Units" + "</b>\n" +
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage + "</b>\n"+
 
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName2 + "</u>[L]<u type='string'>" + sumPricePerUnitString2 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty2 + "x" + pricePerUnit2 + " / Units" + "</b>\n" +
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage2 + "</b>\n"+
 
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName3 + "</u>[L]<u type='string'>" + sumPricePerUnitString3 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty3 + "x" + pricePerUnit3 + " / Units" + "</b>\n" +
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage3 + "</b>\n"+
 
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName4 + "</u>[L]<u type='string'>" + sumPricePerUnitString4 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty4 + "x" + pricePerUnit4 + " / Units" + "</b>\n" +
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage4 + "</b>\n"+
 
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName5 + "</u>[L]<u type='string'>" + sumPricePerUnitString5 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty5 + "x" + pricePerUnit5 + " / Units" + "</b>\n" +
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage5 + "</b>\n"+
 
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName6 + "</u>[L]<u type='string'>" + sumPricePerUnitString6 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty6 + "x" + pricePerUnit6 + " / Units" + "</b>\n" +
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage6 + "</b>\n"+
                     // THIS IS THE LOOPING
                     "[L]\n" +
                     "[C]--------------------------------\n" +
@@ -1031,6 +1071,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName1 = orderList.get(0).name;
             Double orderPrice1 = orderList.get(0).priceUnit;
             Double orderQty1 = orderList.get(0).orderedQty;
+            Double discountPercentage = orderList.get(0).discount;
             double sumPricePerUnit1 = orderPrice1 * orderQty1;
             String sumPricePerUnitString1;
             sumPricePerUnitString1 = formatRupiah.format(sumPricePerUnit1);
@@ -1042,6 +1083,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName2 = orderList.get(1).name;
             Double orderPrice2 = orderList.get(1).priceUnit;
             Double orderQty2 = orderList.get(1).orderedQty;
+            Double discountPercentage2 = orderList.get(1).discount;
             double sumPricePerUnit2 = orderPrice2 * orderQty2;
             String sumPricePerUnitString2;
             sumPricePerUnitString2 = formatRupiah.format(sumPricePerUnit2);
@@ -1053,6 +1095,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName3 = orderList.get(2).name;
             Double orderPrice3 = orderList.get(2).priceUnit;
             Double orderQty3 = orderList.get(2).orderedQty;
+            Double discountPercentage3 = orderList.get(2).discount;
             double sumPricePerUnit3 = orderPrice3 * orderQty3;
             String sumPricePerUnitString3;
             sumPricePerUnitString3 = formatRupiah.format(sumPricePerUnit3);
@@ -1064,6 +1107,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName4 = orderList.get(3).name;
             Double orderPrice4 = orderList.get(3).priceUnit;
             Double orderQty4 = orderList.get(3).orderedQty;
+            Double discountPercentage4 = orderList.get(3).discount;
             double sumPricePerUnit4 = orderPrice4 * orderQty4;
             String sumPricePerUnitString4;
             sumPricePerUnitString4 = formatRupiah.format(sumPricePerUnit4);
@@ -1075,6 +1119,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName5 = orderList.get(4).name;
             Double orderPrice5 = orderList.get(4).priceUnit;
             Double orderQty5 = orderList.get(4).orderedQty;
+            Double discountPercentage5 = orderList.get(4).discount;
             double sumPricePerUnit5 = orderPrice5 * orderQty5;
             String sumPricePerUnitString5;
             sumPricePerUnitString5 = formatRupiah.format(sumPricePerUnit5);
@@ -1086,6 +1131,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName6 = orderList.get(5).name;
             Double orderPrice6 = orderList.get(5).priceUnit;
             Double orderQty6 = orderList.get(5).orderedQty;
+            Double discountPercentage6 = orderList.get(5).discount;
             double sumPricePerUnit6 = orderPrice6 * orderQty6;
             String sumPricePerUnitString6;
             sumPricePerUnitString6 = formatRupiah.format(sumPricePerUnit6);
@@ -1097,6 +1143,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName7 = orderList.get(6).name;
             Double orderPrice7 = orderList.get(6).priceUnit;
             Double orderQty7 = orderList.get(6).orderedQty;
+            Double discountPercentage7 = orderList.get(6).discount;
             double sumPricePerUnit7 = orderPrice7 * orderQty7;
             String sumPricePerUnitString7;
             sumPricePerUnitString7 = formatRupiah.format(sumPricePerUnit7);
@@ -1127,42 +1174,45 @@ public class MainActivity extends AppCompatActivity {
                     "[L]<u type='string'>" + orderName1 + "</u>[L]<u type='string'>" + sumPricePerUnitString1 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty1 + "x" + pricePerUnit1 + " / Units" + "</b>\n" +
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage + "</b>\n"+
 
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName2 + "</u>[L]<u type='string'>" + sumPricePerUnitString2 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty2 + "x" + pricePerUnit2 + " / Units" + "</b>\n" +
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage2 + "</b>\n"+
 
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName3 + "</u>[L]<u type='string'>" + sumPricePerUnitString3 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty3 + "x" + pricePerUnit3 + " / Units" + "</b>\n" +
-
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage3 + "</b>\n"+
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName4 + "</u>[L]<u type='string'>" + sumPricePerUnitString4 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty4 + "x" + pricePerUnit4 + " / Units" + "</b>\n" +
-
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage4 + "</b>\n"+
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName5 + "</u>[L]<u type='string'>" + sumPricePerUnitString5 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty5 + "x" + pricePerUnit5 + " / Units" + "</b>\n" +
-
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage5 + "</b>\n"+
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName6 + "</u>[L]<u type='string'>" + sumPricePerUnitString6 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty6 + "x" + pricePerUnit6 + " / Units" + "</b>\n" +
-
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage6 + "</b>\n"+
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName7 + "</u>[L]<u type='string'>" + sumPricePerUnitString7 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty7 + "x" + pricePerUnit7 + " / Units" + "</b>\n" +
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage7 + "</b>\n"+
                     // THIS IS THE LOOPING
                     "[L]\n" +
                     "[C]--------------------------------\n" +
@@ -1181,6 +1231,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName1 = orderList.get(0).name;
             Double orderPrice1 = orderList.get(0).priceUnit;
             Double orderQty1 = orderList.get(0).orderedQty;
+            Double discountPercentage = orderList.get(0).discount;
             double sumPricePerUnit1 = orderPrice1 * orderQty1;
             String sumPricePerUnitString1;
             sumPricePerUnitString1 = formatRupiah.format(sumPricePerUnit1);
@@ -1192,6 +1243,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName2 = orderList.get(1).name;
             Double orderPrice2 = orderList.get(1).priceUnit;
             Double orderQty2 = orderList.get(1).orderedQty;
+            Double discountPercentage2 = orderList.get(1).discount;
             double sumPricePerUnit2 = orderPrice2 * orderQty2;
             String sumPricePerUnitString2;
             sumPricePerUnitString2 = formatRupiah.format(sumPricePerUnit2);
@@ -1203,6 +1255,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName3 = orderList.get(2).name;
             Double orderPrice3 = orderList.get(2).priceUnit;
             Double orderQty3 = orderList.get(2).orderedQty;
+            Double discountPercentage3 = orderList.get(2).discount;
             double sumPricePerUnit3 = orderPrice3 * orderQty3;
             String sumPricePerUnitString3;
             sumPricePerUnitString3 = formatRupiah.format(sumPricePerUnit3);
@@ -1214,6 +1267,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName4 = orderList.get(3).name;
             Double orderPrice4 = orderList.get(3).priceUnit;
             Double orderQty4 = orderList.get(3).orderedQty;
+            Double discountPercentage4 = orderList.get(3).discount;
             double sumPricePerUnit4 = orderPrice4 * orderQty4;
             String sumPricePerUnitString4;
             sumPricePerUnitString4 = formatRupiah.format(sumPricePerUnit4);
@@ -1225,6 +1279,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName5 = orderList.get(4).name;
             Double orderPrice5 = orderList.get(4).priceUnit;
             Double orderQty5 = orderList.get(4).orderedQty;
+            Double discountPercentage5 = orderList.get(4).discount;
             double sumPricePerUnit5 = orderPrice5 * orderQty5;
             String sumPricePerUnitString5;
             sumPricePerUnitString5 = formatRupiah.format(sumPricePerUnit5);
@@ -1236,6 +1291,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName6 = orderList.get(5).name;
             Double orderPrice6 = orderList.get(5).priceUnit;
             Double orderQty6 = orderList.get(5).orderedQty;
+            Double discountPercentage6 = orderList.get(5).discount;
             double sumPricePerUnit6 = orderPrice6 * orderQty6;
             String sumPricePerUnitString6;
             sumPricePerUnitString6 = formatRupiah.format(sumPricePerUnit6);
@@ -1247,6 +1303,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName7 = orderList.get(6).name;
             Double orderPrice7 = orderList.get(6).priceUnit;
             Double orderQty7 = orderList.get(6).orderedQty;
+            Double discountPercentage7 = orderList.get(6).discount;
             double sumPricePerUnit7 = orderPrice7 * orderQty7;
             String sumPricePerUnitString7;
             sumPricePerUnitString7 = formatRupiah.format(sumPricePerUnit7);
@@ -1258,6 +1315,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName8 = orderList.get(7).name;
             Double orderPrice8 = orderList.get(7).priceUnit;
             Double orderQty8 = orderList.get(7).orderedQty;
+            Double discountPercentage8 = orderList.get(7).discount;
             double sumPricePerUnit8 = orderPrice8 * orderQty8;
             String sumPricePerUnitString8;
             sumPricePerUnitString8 = formatRupiah.format(sumPricePerUnit8);
@@ -1288,48 +1346,50 @@ public class MainActivity extends AppCompatActivity {
                     "[L]<u type='string'>" + orderName1 + "</u>[L]<u type='string'>" + sumPricePerUnitString1 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty1 + "x" + pricePerUnit1 + " / Units" + "</b>\n" +
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage2+ "</b>\n"+
 
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName2 + "</u>[L]<u type='string'>" + sumPricePerUnitString2 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty2 + "x" + pricePerUnit2 + " / Units" + "</b>\n" +
-
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage2 + "</b>\n"+
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName3 + "</u>[L]<u type='string'>" + sumPricePerUnitString3 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty3 + "x" + pricePerUnit3 + " / Units" + "</b>\n" +
-
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage3 + "</b>\n"+
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName4 + "</u>[L]<u type='string'>" + sumPricePerUnitString4 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty4 + "x" + pricePerUnit4 + " / Units" + "</b>\n" +
-
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage4 + "</b>\n"+
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName5 + "</u>[L]<u type='string'>" + sumPricePerUnitString5 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty5 + "x" + pricePerUnit5 + " / Units" + "</b>\n" +
-
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage5 + "</b>\n"+
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName6 + "</u>[L]<u type='string'>" + sumPricePerUnitString6 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty6 + "x" + pricePerUnit6 + " / Units" + "</b>\n" +
-
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage6 + "</b>\n"+
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName7 + "</u>[L]<u type='string'>" + sumPricePerUnitString7 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty7 + "x" + pricePerUnit7 + " / Units" + "</b>\n" +
-
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage7 + "</b>\n"+
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName8 + "</u>[L]<u type='string'>" + sumPricePerUnitString8 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty8 + "x" + pricePerUnit8 + " / Units" + "</b>\n" +
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage8 + "</b>\n"+
                     // THIS IS THE LOOPING
                     "[L]\n" +
                     "[C]--------------------------------\n" +
@@ -1348,6 +1408,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName1 = orderList.get(0).name;
             Double orderPrice1 = orderList.get(0).priceUnit;
             Double orderQty1 = orderList.get(0).orderedQty;
+            Double discountPercentage = orderList.get(0).discount;
             double sumPricePerUnit1 = orderPrice1 * orderQty1;
             String sumPricePerUnitString1;
             sumPricePerUnitString1 = formatRupiah.format(sumPricePerUnit1);
@@ -1359,6 +1420,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName2 = orderList.get(1).name;
             Double orderPrice2 = orderList.get(1).priceUnit;
             Double orderQty2 = orderList.get(1).orderedQty;
+            Double discountPercentage2 = orderList.get(1).discount;
             double sumPricePerUnit2 = orderPrice2 * orderQty2;
             String sumPricePerUnitString2;
             sumPricePerUnitString2 = formatRupiah.format(sumPricePerUnit2);
@@ -1370,6 +1432,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName3 = orderList.get(2).name;
             Double orderPrice3 = orderList.get(2).priceUnit;
             Double orderQty3 = orderList.get(2).orderedQty;
+            Double discountPercentage3 = orderList.get(2).discount;
             double sumPricePerUnit3 = orderPrice3 * orderQty3;
             String sumPricePerUnitString3;
             sumPricePerUnitString3 = formatRupiah.format(sumPricePerUnit3);
@@ -1381,6 +1444,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName4 = orderList.get(3).name;
             Double orderPrice4 = orderList.get(3).priceUnit;
             Double orderQty4 = orderList.get(3).orderedQty;
+            Double discountPercentage4 = orderList.get(3).discount;
             double sumPricePerUnit4 = orderPrice4 * orderQty4;
             String sumPricePerUnitString4;
             sumPricePerUnitString4 = formatRupiah.format(sumPricePerUnit4);
@@ -1392,6 +1456,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName5 = orderList.get(4).name;
             Double orderPrice5 = orderList.get(4).priceUnit;
             Double orderQty5 = orderList.get(4).orderedQty;
+            Double discountPercentage5 = orderList.get(4).discount;
             double sumPricePerUnit5 = orderPrice5 * orderQty5;
             String sumPricePerUnitString5;
             sumPricePerUnitString5 = formatRupiah.format(sumPricePerUnit5);
@@ -1403,6 +1468,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName6 = orderList.get(5).name;
             Double orderPrice6 = orderList.get(5).priceUnit;
             Double orderQty6 = orderList.get(5).orderedQty;
+            Double discountPercentage6 = orderList.get(5).discount;
             double sumPricePerUnit6 = orderPrice6 * orderQty6;
             String sumPricePerUnitString6;
             sumPricePerUnitString6 = formatRupiah.format(sumPricePerUnit6);
@@ -1414,6 +1480,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName7 = orderList.get(6).name;
             Double orderPrice7 = orderList.get(6).priceUnit;
             Double orderQty7 = orderList.get(6).orderedQty;
+            Double discountPercentage7 = orderList.get(6).discount;
             double sumPricePerUnit7 = orderPrice7 * orderQty7;
             String sumPricePerUnitString7;
             sumPricePerUnitString7 = formatRupiah.format(sumPricePerUnit7);
@@ -1425,6 +1492,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName8 = orderList.get(7).name;
             Double orderPrice8 = orderList.get(7).priceUnit;
             Double orderQty8 = orderList.get(7).orderedQty;
+            Double discountPercentage8 = orderList.get(7).discount;
             double sumPricePerUnit8 = orderPrice8 * orderQty8;
             String sumPricePerUnitString8;
             sumPricePerUnitString8 = formatRupiah.format(sumPricePerUnit8);
@@ -1436,6 +1504,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName9 = orderList.get(8).name;
             Double orderPrice9 = orderList.get(8).priceUnit;
             Double orderQty9 = orderList.get(8).orderedQty;
+            Double discountPercentage9 = orderList.get(8).discount;
             double sumPricePerUnit9 = orderPrice9 * orderQty9;
             String sumPricePerUnitString9;
             sumPricePerUnitString9 = formatRupiah.format(sumPricePerUnit9);
@@ -1466,58 +1535,59 @@ public class MainActivity extends AppCompatActivity {
                     "[L]<u type='string'>" + orderName1 + "</u>[L]<u type='string'>" + sumPricePerUnitString1 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty1 + "x" + pricePerUnit1 + " / Units" + "</b>\n" +
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage2+ "</b>\n"+
 
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName2 + "</u>[L]<u type='string'>" + sumPricePerUnitString2 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty2 + "x" + pricePerUnit2 + " / Units" + "</b>\n" +
-
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage2 + "</b>\n"+
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName3 + "</u>[L]<u type='string'>" + sumPricePerUnitString3 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty3 + "x" + pricePerUnit3 + " / Units" + "</b>\n" +
-
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage3 + "</b>\n"+
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName4 + "</u>[L]<u type='string'>" + sumPricePerUnitString4 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty4 + "x" + pricePerUnit4 + " / Units" + "</b>\n" +
-
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage4 + "</b>\n"+
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName5 + "</u>[L]<u type='string'>" + sumPricePerUnitString5 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty5 + "x" + pricePerUnit5 + " / Units" + "</b>\n" +
-
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage5 + "</b>\n"+
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName6 + "</u>[L]<u type='string'>" + sumPricePerUnitString6 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty6 + "x" + pricePerUnit6 + " / Units" + "</b>\n" +
-
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage6 + "</b>\n"+
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName7 + "</u>[L]<u type='string'>" + sumPricePerUnitString7 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty7 + "x" + pricePerUnit7 + " / Units" + "</b>\n" +
-
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage7 + "</b>\n"+
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName8 + "</u>[L]<u type='string'>" + sumPricePerUnitString8 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty8 + "x" + pricePerUnit8 + " / Units" + "</b>\n" +
-
-                    "[L]\n" +
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage8 + "</b>\n"+
 
                     "[L]<u type='string'>" + orderName9 + "</u>[L]<u type='string'>" + sumPricePerUnitString9 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty9 + "x" + pricePerUnit9 + " / Units" + "</b>\n" +
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage9 + "</b>\n"+
                     // THIS IS THE LOOPING
                     "[L]\n" +
                     "[C]--------------------------------\n" +
-                    "[L]<b>TOTAL   : </b>" + "[L]<u type='string'>" + totalInRupiah + "</u>\n" +
+                    "[L]<b>TOTAL : </b>" + "[L]<u type='string'>" + totalInRupiah + "</u>\n" +
                     "[L]<b>PAYMENT : </b>" + "[L]<u type='string'>" + paymentMethod + "</u>\n" +
                     "[L]\n" +
                     "[C]================================\n" +
@@ -1532,6 +1602,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName1 = orderList.get(0).name;
             Double orderPrice1 = orderList.get(0).priceUnit;
             Double orderQty1 = orderList.get(0).orderedQty;
+            Double discountPercentage = orderList.get(0).discount;
             double sumPricePerUnit1 = orderPrice1 * orderQty1;
             String sumPricePerUnitString1;
             sumPricePerUnitString1 = formatRupiah.format(sumPricePerUnit1);
@@ -1543,6 +1614,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName2 = orderList.get(1).name;
             Double orderPrice2 = orderList.get(1).priceUnit;
             Double orderQty2 = orderList.get(1).orderedQty;
+            Double discountPercentage2 = orderList.get(1).discount;
             double sumPricePerUnit2 = orderPrice2 * orderQty2;
             String sumPricePerUnitString2;
             sumPricePerUnitString2 = formatRupiah.format(sumPricePerUnit2);
@@ -1554,6 +1626,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName3 = orderList.get(2).name;
             Double orderPrice3 = orderList.get(2).priceUnit;
             Double orderQty3 = orderList.get(2).orderedQty;
+            Double discountPercentage3 = orderList.get(2).discount;
             double sumPricePerUnit3 = orderPrice3 * orderQty3;
             String sumPricePerUnitString3;
             sumPricePerUnitString3 = formatRupiah.format(sumPricePerUnit3);
@@ -1565,6 +1638,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName4 = orderList.get(3).name;
             Double orderPrice4 = orderList.get(3).priceUnit;
             Double orderQty4 = orderList.get(3).orderedQty;
+            Double discountPercentage4 = orderList.get(3).discount;
             double sumPricePerUnit4 = orderPrice4 * orderQty4;
             String sumPricePerUnitString4;
             sumPricePerUnitString4 = formatRupiah.format(sumPricePerUnit4);
@@ -1576,6 +1650,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName5 = orderList.get(4).name;
             Double orderPrice5 = orderList.get(4).priceUnit;
             Double orderQty5 = orderList.get(4).orderedQty;
+            Double discountPercentage5 = orderList.get(4).discount;
             double sumPricePerUnit5 = orderPrice5 * orderQty5;
             String sumPricePerUnitString5;
             sumPricePerUnitString5 = formatRupiah.format(sumPricePerUnit5);
@@ -1587,6 +1662,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName6 = orderList.get(5).name;
             Double orderPrice6 = orderList.get(5).priceUnit;
             Double orderQty6 = orderList.get(5).orderedQty;
+            Double discountPercentage6 = orderList.get(5).discount;
             double sumPricePerUnit6 = orderPrice6 * orderQty6;
             String sumPricePerUnitString6;
             sumPricePerUnitString6 = formatRupiah.format(sumPricePerUnit6);
@@ -1598,6 +1674,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName7 = orderList.get(6).name;
             Double orderPrice7 = orderList.get(6).priceUnit;
             Double orderQty7 = orderList.get(6).orderedQty;
+            Double discountPercentage7 = orderList.get(6).discount;
             double sumPricePerUnit7 = orderPrice7 * orderQty7;
             String sumPricePerUnitString7;
             sumPricePerUnitString7 = formatRupiah.format(sumPricePerUnit7);
@@ -1609,6 +1686,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName8 = orderList.get(7).name;
             Double orderPrice8 = orderList.get(7).priceUnit;
             Double orderQty8 = orderList.get(7).orderedQty;
+            Double discountPercentage8 = orderList.get(7).discount;
             double sumPricePerUnit8 = orderPrice8 * orderQty8;
             String sumPricePerUnitString8;
             sumPricePerUnitString8 = formatRupiah.format(sumPricePerUnit8);
@@ -1620,6 +1698,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName9 = orderList.get(8).name;
             Double orderPrice9 = orderList.get(8).priceUnit;
             Double orderQty9 = orderList.get(8).orderedQty;
+            Double discountPercentage9 = orderList.get(8).discount;
             double sumPricePerUnit9 = orderPrice9 * orderQty9;
             String sumPricePerUnitString9;
             sumPricePerUnitString9 = formatRupiah.format(sumPricePerUnit9);
@@ -1631,6 +1710,7 @@ public class MainActivity extends AppCompatActivity {
             String orderName10 = orderList.get(9).name;
             Double orderPrice10 = orderList.get(9).priceUnit;
             Double orderQty10 = orderList.get(9).orderedQty;
+            Double discountPercentage10 = orderList.get(9).discount;
             double sumPricePerUnit10 = orderPrice10 * orderQty10;
             String sumPricePerUnitString10;
             sumPricePerUnitString10 = formatRupiah.format(sumPricePerUnit10);
@@ -1661,60 +1741,62 @@ public class MainActivity extends AppCompatActivity {
                     "[L]<u type='string'>" + orderName1 + "</u>[L]<u type='string'>" + sumPricePerUnitString1 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty1 + "x" + pricePerUnit1 + " / Units" + "</b>\n" +
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage2+ "</b>\n"+
 
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName2 + "</u>[L]<u type='string'>" + sumPricePerUnitString2 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty2 + "x" + pricePerUnit2 + " / Units" + "</b>\n" +
-
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage2 + "</b>\n"+
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName3 + "</u>[L]<u type='string'>" + sumPricePerUnitString3 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty3 + "x" + pricePerUnit3 + " / Units" + "</b>\n" +
-
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage3 + "</b>\n"+
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName4 + "</u>[L]<u type='string'>" + sumPricePerUnitString4 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty4 + "x" + pricePerUnit4 + " / Units" + "</b>\n" +
-
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage4 + "</b>\n"+
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName5 + "</u>[L]<u type='string'>" + sumPricePerUnitString5 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty5 + "x" + pricePerUnit5 + " / Units" + "</b>\n" +
-
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage5 + "</b>\n"+
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName6 + "</u>[L]<u type='string'>" + sumPricePerUnitString6 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty6 + "x" + pricePerUnit6 + " / Units" + "</b>\n" +
-
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage6 + "</b>\n"+
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName7 + "</u>[L]<u type='string'>" + sumPricePerUnitString7 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty7 + "x" + pricePerUnit7 + " / Units" + "</b>\n" +
-
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage7 + "</b>\n"+
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName8 + "</u>[L]<u type='string'>" + sumPricePerUnitString8 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty8 + "x" + pricePerUnit8 + " / Units" + "</b>\n" +
-
-                    "[L]\n" +
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage8 + "</b>\n"+
 
                     "[L]<u type='string'>" + orderName9 + "</u>[L]<u type='string'>" + sumPricePerUnitString9 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty9 + "x" + pricePerUnit9 + " / Units" + "</b>\n" +
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage9 + "</b>\n"+
 
                     "[L]\n" +
 
                     "[L]<u type='string'>" + orderName10 + "</u>[L]<u type='string'>" + sumPricePerUnitString10 + "</u>\n" +
                     "[L]<b>Quantity</b>\n" +
                     "[L]<b type='string'>" + orderQty10 + "x" + pricePerUnit10 + " / Units" + "</b>\n" +
+                    "[L]<b>Discount : </b>" + "[L]<b type='string'>" + discountPercentage10 + "</b>\n"+
                     // THIS IS THE LOOPING
                     "[L]\n" +
                     "[C]--------------------------------\n" +
